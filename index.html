@@ -1,0 +1,5821 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ABDUSSALAM | Flutter Developer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial, sans-serif;
+  background:radial-gradient(circle at top,#020617,#000);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ====== TITLE RAINBOW ====== */
+.rainbow-title{
+  text-align:center;
+  font-size:2rem;
+  font-weight:1000;
+  margin:25px 0 8px;
+  background: linear-gradient(90deg,#22c55e,#38bdf8,#a855f7,#fbbf24,#ef4444,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glowMove 3s linear infinite;
+  text-shadow:0 0 25px rgba(255,255,255,.15);
+}
+@keyframes glowMove{
+  0%{filter:hue-rotate(0deg)}
+  100%{filter:hue-rotate(360deg)}
+}
+.subtitle{
+  text-align:center;
+  color:#94a3b8;
+  margin-bottom:18px;
+  font-size:.95rem;
+}
+
+/* ====== CARD BASE ====== */
+.container{max-width:430px;margin:auto;padding:16px}
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:26px;
+  padding:18px;
+  margin:18px 0;
+  box-shadow:0 0 40px rgba(56,189,248,.10),0 0 40px rgba(220,38,38,.12);
+  opacity:0;
+  transform:translateY(80px) scale(.95);
+  filter:blur(6px);
+  transition:.8s;
+}
+.card.show{
+  opacity:1;
+  transform:none;
+  filter:none;
+}
+.section-title{
+  text-align:center;
+  margin-top:30px;
+}
+.section-title h2{
+  font-size:1.25rem;
+  font-weight:1000;
+  margin-bottom:6px;
+  background: linear-gradient(90deg,#22c55e,#38bdf8,#a855f7,#fbbf24,#ef4444);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.section-title p{
+  color:#94a3b8;
+  font-size:.88rem;
+}
+
+/* ====== TERMINAL HOLLYWOOD ====== */
+.terminal{
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(34,197,94,.25);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 0 35px rgba(34,197,94,.12),0 0 45px rgba(56,189,248,.08);
+  overflow:hidden;
+}
+.term-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.dots{display:flex;gap:8px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.red{background:#ef4444}
+.dot.yellow{background:#fbbf24}
+.dot.green{background:#22c55e}
+.term-title{
+  font-weight:900;
+  font-size:.85rem;
+  color:#94a3b8;
+}
+.term-body{
+  font-family:"Courier New", monospace;
+  font-size:.88rem;
+  line-height:1.5;
+  color:#22c55e;
+  white-space:pre-line;
+}
+.term-body span{color:#38bdf8}
+.scanline{position:relative}
+.scanline::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.03),
+    rgba(255,255,255,.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events:none;
+  mix-blend-mode:overlay;
+  opacity:.25;
+}
+
+/* ====== LINKS ICON LIST ====== */
+.linklist{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:12px;
+}
+.link-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:22px;
+  cursor:pointer;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.10);
+  transition:.25s;
+  position:relative;
+}
+.link-item:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 28px rgba(56,189,248,.18);
+}
+.link-icon{
+  width:44px;height:44px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  background:linear-gradient(90deg,#22c55e,#38bdf8,#a855f7);
+}
+.link-meta{flex:1;min-width:0}
+.link-meta b{
+  display:block;
+  font-size:.95rem;
+  color:#e5e7eb;
+}
+.link-meta small{
+  display:block;
+  font-size:.78rem;
+  color:#94a3b8;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.link-go{
+  width:38px;height:38px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#fbbf24;
+}
+
+/* getar */
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-2px)}
+  40%{transform:translateX(2px)}
+  60%{transform:translateX(-2px)}
+  80%{transform:translateX(2px)}
+}
+.shake:active{animation:shake .25s linear}
+
+/* ====== BUTTON REQUEST ====== */
+.big-btn{
+  width:100%;
+  border:none;
+  padding:14px 16px;
+  border-radius:999px;
+  font-weight:1000;
+  cursor:pointer;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(90deg,#ef4444,#fbbf24,#22c55e,#38bdf8,#a855f7);
+  box-shadow:0 0 35px rgba(239,68,68,.18);
+}
+
+/* ========================= */
+/* HOME SKILLS (BARU)        */
+/* ========================= */
+.skills-wrap{max-width:430px;margin:auto;padding:0 16px 16px}
+.skill-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.skill-item{
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:22px;
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  transition:.25s;
+  cursor:pointer;
+}
+.skill-item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(56,189,248,.18);
+}
+.skill-ico{
+  width:46px;height:46px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  color:#fff;
+  background:linear-gradient(90deg,#22c55e,#38bdf8,#a855f7);
+  box-shadow:0 0 20px rgba(34,197,94,.12);
+}
+.skill-meta b{
+  display:block;
+  font-size:.95rem;
+  color:#e5e7eb;
+  margin-bottom:4px;
+}
+.skill-meta small{
+  display:block;
+  font-size:.82rem;
+  color:#94a3b8;
+  line-height:1.35;
+}
+.skill-badges{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.skill-badge{
+  font-size:.78rem;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  color:#dbeafe;
+  font-weight:800;
+}
+.skill-badge i{margin-right:6px;color:#22c55e}
+
+/* ============================= */
+/* GALERI CODING UBUNTU (BARU)   */
+/* ============================= */
+.gallery-wrap{max-width:430px;margin:auto;padding:0 16px 16px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:14px;
+}
+.gal-item{
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.30);
+  cursor:pointer;
+  transition:.25s;
+  position:relative;
+}
+.gal-item:hover{
+  transform:translateY(-2px) scale(1.01);
+  box-shadow:0 0 28px rgba(56,189,248,.18);
+}
+.gal-img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.2) contrast(1.05);
+}
+.gal-cap{
+  padding:14px;
+}
+.gal-cap b{
+  display:block;
+  font-size:.95rem;
+  color:#e5e7eb;
+  margin-bottom:4px;
+}
+.gal-cap small{
+  display:block;
+  font-size:.82rem;
+  color:#94a3b8;
+  line-height:1.35;
+}
+.gal-tag{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.tag{
+  font-size:.78rem;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  color:#e2e8f0;
+  font-weight:900;
+}
+.tag i{margin-right:6px;color:#fbbf24}
+
+/* POPUP IMAGE */
+.img-pop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:19000;
+  padding:16px;
+}
+.img-box{
+  width:94%;
+  max-width:520px;
+  background:#020617;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 0 80px rgba(56,189,248,.20), 0 0 55px rgba(220,38,38,.22);
+}
+.img-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.img-head b{color:#e5e7eb;font-weight:1000}
+.img-close{
+  width:40px;height:40px;
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#ef4444;
+}
+.img-view{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.img-desc{
+  padding:14px;
+  color:#cbd5e1;
+  font-size:.92rem;
+  line-height:1.55;
+}
+.img-actions{
+  display:flex;
+  gap:10px;
+  padding:0 14px 14px;
+}
+.img-btn{
+  flex:1;
+  border:none;
+  padding:12px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:1000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.img-btn.copy{background:linear-gradient(90deg,#38bdf8,#a855f7)}
+.img-btn.open{background:linear-gradient(90deg,#22c55e,#38bdf8)}
+
+/* ========================= */
+/* TESTIMONI (PELANN)        */
+/* ========================= */
+.testi-wrap{max-width:430px;margin:auto;padding:0 16px 16px}
+.testi-slider{margin-top:14px;margin-bottom:18px}
+.testi-inner{
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.25);
+}
+.testi-row{padding:12px}
+.testi-track{
+  display:inline-flex;
+  gap:12px;
+  animation:testiMarq 150s linear infinite;
+  will-change:transform;
+}
+@keyframes testiMarq{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.testi-pill{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#e5e7eb;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:.2s;
+}
+.testi-pill:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(56,189,248,.18);
+}
+.testi-card{
+  background:#020617;
+  border-radius:26px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 55px rgba(56,189,248,.12), 0 0 45px rgba(220,38,38,.20);
+  opacity:0;
+  transform:translateY(80px) scale(.95);
+  filter:blur(6px);
+  transition:.8s;
+}
+.testi-card.show{opacity:1;transform:none;filter:none}
+.testi-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+.testi-top h3{
+  font-size:1.05rem;
+  font-weight:1000;
+  color:#e5e7eb;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.stars i{color:#fbbf24}
+.testi-text{color:#cbd5e1;font-size:.92rem;line-height:1.5}
+.testi-user{display:flex;gap:12px;align-items:center;margin-top:14px}
+.avatar{
+  width:44px;height:44px;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.user-meta b{display:block;color:#e5e7eb;font-size:.92rem}
+.user-meta small{display:block;color:#94a3b8;font-size:.78rem}
+.mini-terminal{
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(34,197,94,.20);
+  border-radius:20px;
+  padding:12px;
+  font-family:"Courier New", monospace;
+  color:#22c55e;
+  font-size:.82rem;
+  white-space:pre-line;
+}
+
+/* POPUP TESTI */
+.testi-pop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:16000;
+  padding:16px;
+}
+.testi-popbox{
+  width:92%;
+  max-width:430px;
+  background:#020617;
+  border-radius:26px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 70px rgba(56,189,248,.18), 0 0 50px rgba(220,38,38,.25);
+}
+.testi-pophead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.testi-pophead h3{font-size:1.05rem;font-weight:1000;color:#e5e7eb}
+.testi-close{
+  width:40px;height:40px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#ef4444;
+}
+.testi-popstars i{color:#fbbf24;margin-right:4px}
+.testi-poptext{color:#cbd5e1;margin:12px 0;line-height:1.5;font-size:.92rem}
+.testi-popmeta{display:flex;gap:12px;align-items:center;margin-top:10px}
+
+/* ============================= */
+/* REQUEST PROJECT POPUP (BARU)  */
+/* ============================= */
+.req-pop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:17000;
+  padding:16px;
+}
+.req-box{
+  width:92%;
+  max-width:420px;
+  background:#020617;
+  border-radius:26px;
+  padding:18px 16px 16px;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 70px rgba(220,38,38,.35), 0 0 55px rgba(34,197,94,.15);
+  position:relative;
+  animation: popIn .25s ease;
+}
+@keyframes popIn{
+  from{transform:translateY(18px) scale(.96);opacity:.2}
+  to{transform:translateY(0) scale(1);opacity:1}
+}
+.req-close{
+  position:absolute;
+  right:12px;top:12px;
+  width:40px;height:40px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#ef4444;
+  font-size:18px;
+}
+.req-title{
+  text-align:center;
+  font-size:1.45rem;
+  font-weight:1000;
+  margin-top:6px;
+  margin-bottom:14px;
+  background: linear-gradient(90deg,#22c55e,#38bdf8,#a855f7,#fbbf24,#ef4444);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.req-sub{
+  text-align:center;
+  color:#94a3b8;
+  font-size:.85rem;
+  margin-bottom:14px;
+}
+.req-form{display:flex;flex-direction:column;gap:10px}
+.req-form input,.req-form textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.10);
+  color:#e5e7eb;
+  outline:none;
+  font-size:.9rem;
+}
+.req-form textarea{min-height:90px;resize:none}
+.req-send{
+  width:100%;
+  border:none;
+  padding:13px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:1000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(90deg,#22c55e,#38bdf8);
+  box-shadow:0 0 35px rgba(34,197,94,.20);
+}
+.req-email{
+  width:100%;
+  border:none;
+  padding:13px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:1000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:linear-gradient(90deg,#ef4444,#fbbf24);
+  box-shadow:0 0 35px rgba(239,68,68,.18);
+}
+
+/* ============================= */
+/* SERTIFIKAT (BARU)             */
+/* ============================= */
+.cert-wrap{max-width:430px;margin:auto;padding:0 16px 16px}
+.cert-card{
+  background:linear-gradient(180deg, rgba(11,16,34,.92), rgba(2,6,23,.88));
+  border-radius:26px;
+  padding:18px;
+  margin:26px 0;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 55px rgba(56,189,248,.12), 0 0 45px rgba(220,38,38,.20);
+  opacity:0;
+  transform:translateY(80px) scale(.95);
+  filter:blur(6px);
+  transition:.8s;
+  position:relative;
+  overflow:hidden;
+}
+.cert-card.show{opacity:1;transform:none;filter:none}
+.cert-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.cert-head h3{
+  font-size:1.05rem;
+  color:#e5e7eb;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:1000;
+}
+.cert-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.cert-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:14px;
+  border-radius:20px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.10);
+}
+.cert-ico{
+  width:46px;height:46px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  color:#fff;
+  background:linear-gradient(90deg,#22c55e,#38bdf8,#a855f7);
+}
+.cert-meta b{display:block;color:#e5e7eb;font-size:.95rem;margin-bottom:4px}
+.cert-meta small{display:block;color:#94a3b8;font-size:.82rem;line-height:1.35}
+.cert-actions{display:flex;gap:10px;margin-top:14px}
+.cert-btn{
+  flex:1;border:none;
+  padding:12px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:1000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.cert-btn.view{background:linear-gradient(90deg,#38bdf8,#a855f7)}
+.cert-btn.wa{background:linear-gradient(90deg,#22c55e,#38bdf8)}
+
+/* POPUP CERT */
+.cert-pop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:18000;
+  padding:16px;
+}
+.cert-popbox{
+  width:92%;
+  max-width:430px;
+  background:#020617;
+  border-radius:26px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 70px rgba(56,189,248,.18), 0 0 50px rgba(220,38,38,.25);
+}
+.cert-pophead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.cert-pophead h3{
+  font-size:1.05rem;
+  color:#e5e7eb;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:1000;
+}
+.cert-popclose{
+  width:40px;height:40px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#ef4444;
+}
+.cert-paper{
+  border-radius:18px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  padding:18px;
+  text-align:center;
+}
+.cert-paper h2{
+  font-size:1.2rem;
+  font-weight:1000;
+  background: linear-gradient(90deg,#22c55e,#38bdf8,#a855f7,#fbbf24,#ef4444);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.cert-paper p{color:#cbd5e1;font-size:.9rem;line-height:1.45}
+.cert-sign{margin-top:12px;color:#94a3b8;font-size:.82rem}
+
+/* ====== FOOTER ====== */
+.footer{
+  text-align:center;
+  padding:24px 16px 80px;
+  color:#94a3b8;
+  font-size:.85rem;
+}
+.footer b{color:#e5e7eb}
+
+/* ====== FLOATING BUTTONS ====== */
+.floating{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:9999;
+}
+.float-btn{
+  padding:14px 18px;
+  border-radius:999px;
+  font-weight:1000;
+  cursor:pointer;
+  user-select:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  box-shadow:0 0 24px rgba(0,0,0,.35);
+}
+.float-wa{background:linear-gradient(90deg,#22c55e,#38bdf8)}
+.float-req{background:linear-gradient(90deg,#ef4444,#fbbf24)}
+.float-home{background:linear-gradient(90deg,#38bdf8,#a855f7)}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="home">
+
+  <div class="rainbow-title">ABDUSSALAM</div>
+  <div class="subtitle">Flutter • FlutterFlow • Firebase • Supabase • MySQL • PHPMyAdmin</div>
+
+  <!-- TERMINAL -->
+  <div class="card show">
+    <div class="terminal scanline">
+      <div class="term-top">
+        <div class="dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <div class="term-title">abdussalam@terminal:~</div>
+      </div>
+      <div class="term-body" id="termText"></div>
+    </div>
+  </div>
+
+  <!-- HOME SKILLS -->
+  <div class="section-title" id="skills">
+    <h2>Home Skills</h2>
+    <p>Stack utama untuk build App & Backend</p>
+  </div>
+
+  <section class="skills-wrap">
+    <div class="card">
+      <div class="skill-grid">
+
+        <div class="skill-item" onclick="pulse(this);openSkillPop('Flutter Development','Build aplikasi Android/iOS dengan UI modern, clean code, performance tinggi.','UI/UX • State Management • REST API • Clean Architecture','fa-brands fa-flutter')">
+          <div class="skill-ico"><i class="fa-brands fa-flutter"></i></div>
+          <div class="skill-meta">
+            <b>Flutter Development</b>
+            <small>Build aplikasi Android/iOS dengan UI modern, clean code, performance tinggi.</small>
+            <div class="skill-badges">
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> UI/UX</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> State</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> API</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-item" onclick="pulse(this);openSkillPop('FlutterFlow','Rapid prototyping + production ready app, cepat jadi & mudah maintenance.','MVP • Fast Build • Export Code • Integrasi Firebase','fa-solid fa-bolt')">
+          <div class="skill-ico"><i class="fa-solid fa-bolt"></i></div>
+          <div class="skill-meta">
+            <b>FlutterFlow</b>
+            <small>Rapid prototyping + production ready app, cepat jadi & mudah maintenance.</small>
+            <div class="skill-badges">
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> MVP</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> Fast Build</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> Export Code</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-item" onclick="pulse(this);openSkillPop('Firebase','Auth, Firestore, Storage, Notification, dan realtime database integration.','Auth • Firestore • Storage • FCM • Analytics','fa-solid fa-fire')">
+          <div class="skill-ico"><i class="fa-solid fa-fire"></i></div>
+          <div class="skill-meta">
+            <b>Firebase</b>
+            <small>Auth, Firestore, Storage, Notification, dan realtime database integration.</small>
+            <div class="skill-badges">
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> Auth</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> Firestore</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> FCM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-item" onclick="pulse(this);openSkillPop('Supabase + MySQL','Backend modern: DB, API, auth, storage + admin panel untuk monitoring data.','SQL • REST • Admin Panel • RLS • Realtime','fa-solid fa-database')">
+          <div class="skill-ico"><i class="fa-solid fa-database"></i></div>
+          <div class="skill-meta">
+            <b>Supabase + MySQL</b>
+            <small>Backend modern: DB, API, auth, storage + admin panel untuk monitoring data.</small>
+            <div class="skill-badges">
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> SQL</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> REST</span>
+              <span class="skill-badge"><i class="fa-solid fa-check"></i> Admin</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS -->
+  <div class="section-title">
+    <h2>Contact & Links</h2>
+    <p>Klik untuk buka • copy • request order</p>
+  </div>
+
+  <div class="card">
+    <div class="linklist">
+
+      <div class="link-item shake" onclick="openLink('https://www.linkedin.com/in/abdus-salam-2b4a303a3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app')">
+        <div class="link-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+        <div class="link-meta">
+          <b>LinkedIn</b>
+          <small>Profile Abdussalam</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+
+      <div class="link-item shake" onclick="copyText('admin@abdussalam.store')">
+        <div class="link-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="link-meta">
+          <b>Email</b>
+          <small>admin@abdussalam.store (klik untuk copy)</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-copy"></i></div>
+      </div>
+
+      <div class="link-item shake" onclick="openLink('https://t.me/riski_login_bot?start=login')">
+        <div class="link-icon"><i class="fa-brands fa-telegram"></i></div>
+        <div class="link-meta">
+          <b>Telegram Bot</b>
+          <small>t.me/riski_login_bot?start=login</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+
+      <div class="link-item shake" onclick="openLink('https://websiteabdus-ship-it.github.io/dem/')">
+        <div class="link-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="link-meta">
+          <b>Demo Website</b>
+          <small>websiteabdus-ship-it.github.io/dem/</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+
+      <div class="link-item shake" onclick="openLink('https://websiteabdus-ship-it.github.io/demo-ui/')">
+        <div class="link-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="link-meta">
+          <b>Demo UI</b>
+          <small>websiteabdus-ship-it.github.io/demo-ui/</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+
+      <div class="link-item shake" onclick="copyText('083155620630')">
+        <div class="link-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="link-meta">
+          <b>WhatsApp</b>
+          <small>083155620630 (klik untuk copy)</small>
+        </div>
+        <div class="link-go"><i class="fa-solid fa-copy"></i></div>
+      </div>
+
+      <button class="big-btn" onclick="openRequest()">
+        <i class="fa-solid fa-cart-shopping"></i> REQUEST ORDER SEKARANG
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================= -->
+<!-- GALERI CODING UBUNTU (BARU)   -->
+<!-- ============================= -->
+<div class="section-title" id="gallery">
+  <h2>Gallery Coding Terminal</h2>
+  <p>Ubuntu • Linux • Terminal • Coding vibes (klik untuk pop)</p>
+</div>
+
+<section class="gallery-wrap">
+  <div class="card">
+    <div class="gallery-grid">
+
+      <!-- Gambar 1 (UBUNTU ASLI) -->
+      <div class="gal-item shake" onclick="openImagePop(
+        'Ubuntu Terminal - Dev Session',
+        'Terminal Ubuntu untuk workflow coding: git pull, build flutter, run emulator, debug log realtime. Cocok untuk project Flutter + Firebase/Supabase.\n\n• Command: flutter run\n• Mode: Debug/Release\n• Integrasi: REST API + Auth\n• Output: APK/AAB',
+        'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
+        'flutter run'
+      )">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80" alt="Ubuntu Terminal" />
+        <div class="gal-cap">
+          <b>Ubuntu Terminal - Dev Session</b>
+          <small>Build Flutter, run emulator, debugging, dan deploy cepat.</small>
+          <div class="gal-tag">
+            <span class="tag"><i class="fa-brands fa-linux"></i> Linux</span>
+            <span class="tag"><i class="fa-solid fa-terminal"></i> Terminal</span>
+            <span class="tag"><i class="fa-brands fa-flutter"></i> Flutter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gambar 2 (UBUNTU ASLI) -->
+      <div class="gal-item shake" onclick="openImagePop(
+        'Coding Setup - Ubuntu Desktop',
+        'Setup coding modern: editor, terminal, dan monitoring.\n\nDeskripsi lengkap:\n• IDE: VS Code / Android Studio\n• Backend: Supabase + MySQL\n• Admin: phpMyAdmin / Panel\n• Deploy: GitHub Pages / VPS\n\nKlik tombol COPY untuk salin contoh command.',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+        'git status'
+      )">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Coding Ubuntu" />
+        <div class="gal-cap">
+          <b>Coding Setup - Ubuntu Desktop</b>
+          <small>Workflow rapi untuk mobile app + backend.</small>
+          <div class="gal-tag">
+            <span class="tag"><i class="fa-solid fa-code"></i> Coding</span>
+            <span class="tag"><i class="fa-solid fa-database"></i> Database</span>
+            <span class="tag"><i class="fa-solid fa-shield-halved"></i> Auth</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gambar 3 (UBUNTU ASLI) -->
+      <div class="gal-item shake" onclick="openImagePop(
+        'Terminal + Server Monitoring',
+        'Terminal bukan cuma untuk coding, tapi juga untuk monitoring server:\n\n• Cek resource: htop / top\n• Cek disk: df -h\n• Cek service: systemctl status\n• Deploy backend: pm2 / nginx\n\nBisa request setup server juga (klik Request Order).',
+        'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+        'htop'
+      )">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80" alt="Linux Terminal" />
+        <div class="gal-cap">
+          <b>Terminal + Server Monitoring</b>
+          <small>Deploy, cek status service, dan optimasi server.</small>
+          <div class="gal-tag">
+            <span class="tag"><i class="fa-solid fa-server"></i> Server</span>
+            <span class="tag"><i class="fa-solid fa-chart-line"></i> Monitor</span>
+            <span class="tag"><i class="fa-solid fa-terminal"></i> CLI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gambar 4 (UBUNTU ASLI) -->
+      <div class="gal-item shake" onclick="openImagePop(
+        'Ubuntu + Flutter Build Pipeline',
+        'Pipeline build Flutter di Ubuntu:\n\n1) flutter clean\n2) flutter pub get\n3) flutter build apk --release\n4) Upload / deploy\n\nBisa request: build signing, keystore, dan publish PlayStore.',
+        'https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=1200&q=80',
+        'flutter build apk --release'
+      )">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=1200&q=80" alt="Flutter Build Ubuntu" />
+        <div class="gal-cap">
+          <b>Ubuntu + Flutter Build Pipeline</b>
+          <small>Release APK/AAB + optimasi performa build.</small>
+          <div class="gal-tag">
+            <span class="tag"><i class="fa-brands fa-android"></i> Android</span>
+            <span class="tag"><i class="fa-brands fa-flutter"></i> Flutter</span>
+            <span class="tag"><i class="fa-solid fa-box"></i> Release</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<div class="section-title" id="testi">
+  <h2>Testimoni</h2>
+  <p>Klik nama untuk pop detail</p>
+</div>
+
+<section class="testi-wrap">
+  <div class="testi-slider">
+    <div class="testi-inner">
+      <div class="testi-row">
+        <div class="testi-track">
+          <div class="testi-pill" onclick="openTesti(0)">⭐ Client A • App Flutter</div>
+          <div class="testi-pill" onclick="openTesti(1)">⭐ Client B • Firebase</div>
+          <div class="testi-pill" onclick="openTesti(2)">⭐ Client C • Supabase</div>
+          <div class="testi-pill" onclick="openTesti(3)">⭐ Client D • UI Modern</div>
+
+          <div class="testi-pill" onclick="openTesti(0)">⭐ Client A • App Flutter</div>
+          <div class="testi-pill" onclick="openTesti(1)">⭐ Client B • Firebase</div>
+          <div class="testi-pill" onclick="openTesti(2)">⭐ Client C • Supabase</div>
+          <div class="testi-pill" onclick="openTesti(3)">⭐ Client D • UI Modern</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testi-card card" id="testiCard">
+    <div class="testi-top">
+      <h3><i class="fa-solid fa-comment-dots"></i> Review Project</h3>
+      <div class="stars">
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+      </div>
+    </div>
+    <div class="testi-text" id="testiText"></div>
+    <div class="testi-user">
+      <div class="avatar">
+        <img src="https://i.pravatar.cc/100?img=12" alt="avatar">
+      </div>
+      <div class="user-meta">
+        <b id="testiName">Client</b>
+        <small id="testiRole">Project Owner</small>
+      </div>
+    </div>
+
+    <div class="mini-terminal" id="miniTerm"></div>
+  </div>
+</section>
+
+<!-- SERTIFIKAT -->
+<div class="section-title" id="cert">
+  <h2>Sertifikat</h2>
+  <p>Klik view untuk pop</p>
+</div>
+
+<section class="cert-wrap">
+  <div class="cert-card card">
+    <div class="cert-head">
+      <h3><i class="fa-solid fa-certificate"></i> Sertifikat & Skill Proof</h3>
+      <span style="color:#94a3b8;font-weight:900;font-size:.85rem;">2026</span>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-item">
+        <div class="cert-ico"><i class="fa-brands fa-flutter"></i></div>
+        <div class="cert-meta">
+          <b>Flutter Developer</b>
+          <small>Pengalaman build UI modern, integrasi API, state management, dan publish release.</small>
+        </div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-ico"><i class="fa-solid fa-fire"></i></div>
+        <div class="cert-meta">
+          <b>Firebase Integration</b>
+          <small>Auth, Firestore, Storage, FCM Notification, realtime database & security rules.</small>
+        </div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-ico"><i class="fa-solid fa-database"></i></div>
+        <div class="cert-meta">
+          <b>Supabase + SQL</b>
+          <small>RLS, REST, database schema, admin panel, dan optimasi query untuk performa.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-actions">
+      <button class="cert-btn view" onclick="openCert()"><i class="fa-solid fa-eye"></i> VIEW</button>
+      <button class="cert-btn wa" onclick="openWA()"><i class="fa-brands fa-whatsapp"></i> CHAT WA</button>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div style="margin-bottom:10px">
+    <b>ABDUSSALAM</b> • Flutter Developer
+  </div>
+  <div style="margin-bottom:6px">Build App • Backend • UI Modern • Deploy</div>
+
+  <!-- ✅ TAMBAHAN ALAMAT -->
+  <div style="margin-bottom:6px">
+    <i class="fa-solid fa-location-dot"></i>
+    Jl Aengsareh Takong, Sampang, Madura, Indonesia
+  </div>
+
+  <!-- ✅ TAMBAHAN UCAPAN -->
+  <div>
+    <b>Terimakasih sudah order</b> 🙏🔥
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating">
+  <div class="float-btn float-home" onclick="scrollToId('home')"><i class="fa-solid fa-house"></i> Home</div>
+  <div class="float-btn float-req" onclick="openRequest()"><i class="fa-solid fa-cart-shopping"></i> Request</div>
+  <div class="float-btn float-wa" onclick="openWA()"><i class="fa-brands fa-whatsapp"></i> WhatsApp</div>
+</div>
+
+<!-- ================= POPUP TESTI ================= -->
+<div class="testi-pop" id="testiPop">
+  <div class="testi-popbox">
+    <div class="testi-pophead">
+      <h3 id="popTitle">Detail Testimoni</h3>
+      <div class="testi-close" onclick="closeTestiPop()"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="testi-popstars" id="popStars"></div>
+    <div class="testi-poptext" id="popText"></div>
+    <div class="testi-popmeta">
+      <div class="avatar"><img id="popAvatar" src="https://i.pravatar.cc/100?img=11" alt=""></div>
+      <div>
+        <b id="popName" style="color:#e5e7eb"></b><br/>
+        <small id="popRole" style="color:#94a3b8"></small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POPUP REQUEST ================= -->
+<div class="req-pop" id="reqPop">
+  <div class="req-box">
+    <div class="req-close" onclick="closeRequest()"><i class="fa-solid fa-xmark"></i></div>
+    <div class="req-title">REQUEST ORDER</div>
+    <div class="req-sub">Isi form, nanti auto kirim ke WhatsApp / Email</div>
+
+    <div class="req-form">
+      <input id="reqName" placeholder="Nama kamu..." />
+      <input id="reqNeed" placeholder="Butuh apa? (App / UI / Backend / Web)" />
+      <textarea id="reqDesc" placeholder="Deskripsi project..."></textarea>
+
+      <button class="req-send" onclick="sendWA()">
+        <i class="fa-brands fa-whatsapp"></i> Kirim ke WhatsApp
+      </button>
+      <button class="req-email" onclick="sendEmail()">
+        <i class="fa-solid fa-envelope"></i> Kirim ke Email
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POPUP CERT ================= -->
+<div class="cert-pop" id="certPop">
+  <div class="cert-popbox">
+    <div class="cert-pophead">
+      <h3><i class="fa-solid fa-certificate"></i> Sertifikat</h3>
+      <div class="cert-popclose" onclick="closeCert()"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+
+    <div class="cert-paper">
+      <h2>SERTIFIKAT KEAHLIAN</h2>
+      <p>
+        Dengan ini menyatakan bahwa <b>ABDUSSALAM</b> memiliki keahlian dalam:
+        <br/><br/>
+        <b>Flutter • FlutterFlow • Firebase • Supabase • MySQL • PHPMyAdmin</b>
+        <br/><br/>
+        Siap mengerjakan project aplikasi, backend, admin panel, dan deployment.
+      </p>
+      <div class="cert-sign">— Verified Portfolio —</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POPUP IMAGE ================= -->
+<div class="img-pop" id="imgPop">
+  <div class="img-box">
+    <div class="img-head">
+      <b id="imgTitle">Preview</b>
+      <div class="img-close" onclick="closeImagePop()"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+
+    <img id="imgView" class="img-view" src="" alt="Preview" />
+
+    <div class="img-desc" id="imgDesc"></div>
+
+    <div class="img-actions">
+      <button class="img-btn copy" onclick="copyFromPop()"><i class="fa-solid fa-copy"></i> COPY CMD</button>
+      <button class="img-btn open" onclick="openFromPop()"><i class="fa-solid fa-arrow-up-right-from-square"></i> OPEN IMG</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POPUP SKILL (BARU) ================= -->
+<div class="testi-pop" id="skillPop" style="z-index:20000">
+  <div class="testi-popbox">
+    <div class="testi-pophead">
+      <h3 id="skillPopTitle">Detail Skill</h3>
+      <div class="testi-close" onclick="closeSkillPop()"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+      <div class="link-icon" style="width:46px;height:46px;border-radius:16px" id="skillPopIcon">
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div>
+        <b id="skillPopName" style="color:#e5e7eb;font-size:1rem"></b><br/>
+        <small id="skillPopBadges" style="color:#94a3b8"></small>
+      </div>
+    </div>
+    <div class="testi-poptext" id="skillPopDesc"></div>
+    <button class="big-btn" onclick="openRequest()">
+      <i class="fa-solid fa-cart-shopping"></i> REQUEST PROJECT SEKARANG
+    </button>
+  </div>
+</div>
+
+<script>
+/* ====== REVEAL CARD ====== */
+const cards = document.querySelectorAll(".card");
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
+  });
+},{threshold:.15});
+cards.forEach(c=>io.observe(c));
+
+/* ====== TERMINAL TYPE ====== */
+const termLines = [
+  "abdussalam@terminal:~$ <span>whoami</span>",
+  "ABDUSSALAM (Flutter Developer)",
+  "",
+  "abdussalam@terminal:~$ <span>stack --list</span>",
+  "✔ Flutter",
+  "✔ FlutterFlow",
+  "✔ Firebase Auth / Firestore / Storage / FCM",
+  "✔ Supabase (SQL + RLS + REST)",
+  "✔ MySQL + PHPMyAdmin",
+  "",
+  "abdussalam@terminal:~$ <span>status</span>",
+  "ONLINE • READY FOR PROJECT 🚀",
+  "",
+  "abdussalam@terminal:~$ <span>echo</span> 'Klik tombol Request untuk order!'"
+];
+let termIndex=0;
+let charIndex=0;
+const termEl = document.getElementById("termText");
+
+function typeTerm(){
+  if(termIndex>=termLines.length) return;
+  const line = termLines[termIndex];
+  const plain = line.replace(/<[^>]+>/g,'');
+
+  if(charIndex < plain.length){
+    // ketik biasa (biar aman)
+    termEl.textContent += plain[charIndex];
+    charIndex++;
+    setTimeout(typeTerm, 14);
+  }else{
+    termEl.textContent += "\n";
+    termIndex++;
+    charIndex=0;
+    setTimeout(typeTerm, 120);
+  }
+}
+typeTerm();
+
+/* ====== UTIL ====== */
+function openLink(url){
+  window.open(url,"_blank");
+}
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  toast("Copied: " + text);
+}
+function pulse(el){
+  el.style.transform="scale(0.98)";
+  setTimeout(()=>el.style.transform="",120);
+}
+function scrollToId(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function openWA(){
+  const phone = "6283155620630";
+  window.open("https://wa.me/"+phone,"_blank");
+}
+
+/* ====== TOAST ====== */
+let toastTimer=null;
+function toast(msg){
+  let t=document.getElementById("toastBox");
+  if(!t){
+    t=document.createElement("div");
+    t.id="toastBox";
+    t.style.position="fixed";
+    t.style.left="50%";
+    t.style.bottom="18px";
+    t.style.transform="translateX(-50%)";
+    t.style.padding="12px 14px";
+    t.style.borderRadius="999px";
+    t.style.background="rgba(0,0,0,.72)";
+    t.style.border="1px solid rgba(255,255,255,.12)";
+    t.style.color="#e5e7eb";
+    t.style.fontWeight="900";
+    t.style.zIndex="30000";
+    t.style.boxShadow="0 0 30px rgba(56,189,248,.18)";
+    t.style.maxWidth="92%";
+    t.style.textAlign="center";
+    document.body.appendChild(t);
+  }
+  t.textContent=msg;
+  t.style.opacity="1";
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.style.opacity="0";},1400);
+}
+
+/* ====== REQUEST POPUP ====== */
+function openRequest(){
+  document.getElementById("reqPop").style.display="flex";
+}
+function closeRequest(){
+  document.getElementById("reqPop").style.display="none";
+}
+function sendWA(){
+  const name = document.getElementById("reqName").value || "-";
+  const need = document.getElementById("reqNeed").value || "-";
+  const desc = document.getElementById("reqDesc").value || "-";
+  const msg =
+`Halo Abdussalam, saya mau request project.
+
+Nama: ${name}
+Butuh: ${need}
+Deskripsi:
+${desc}
+
+Alamat: Jl Aengsareh Takong, Sampang, Madura, Indonesia
+
+Terimakasih sudah order.`;
+  const phone="6283155620630";
+  window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(msg),"_blank");
+}
+function sendEmail(){
+  const name = document.getElementById("reqName").value || "-";
+  const need = document.getElementById("reqNeed").value || "-";
+  const desc = document.getElementById("reqDesc").value || "-";
+  const subject = "Request Project - " + name;
+  const body =
+`Halo Abdussalam,
+
+Saya mau request project.
+
+Nama: ${name}
+Butuh: ${need}
+
+Deskripsi:
+${desc}
+
+Alamat: Jl Aengsareh Takong, Sampang, Madura, Indonesia
+
+Terimakasih sudah order.`;
+  window.open("mailto:admin@abdussalam.store?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body));
+}
+
+/* ====== CERT POPUP ====== */
+function openCert(){document.getElementById("certPop").style.display="flex";}
+function closeCert(){document.getElementById("certPop").style.display="none";}
+
+/* ====== TESTIMONI POPUP ====== */
+const testis = [
+  {
+    title:"Client A • Flutter App",
+    stars:5,
+    text:"Pengerjaan cepat, UI modern, dan aplikasi sangat smooth. Request fitur langsung dikerjakan. Mantap!",
+    name:"Client A",
+    role:"Owner App",
+    avatar:"https://i.pravatar.cc/100?img=12",
+    term:"abdussalam@terminal:~$ flutter run\n✔ build success\n✔ ui clean\n✔ performance stable"
+  },
+  {
+    title:"Client B • Firebase Integration",
+    stars:5,
+    text:"Login Auth + Firestore realtime rapih. Security rules aman. Recommended untuk project serius.",
+    name:"Client B",
+    role:"Startup Founder",
+    avatar:"https://i.pravatar.cc/100?img=22",
+    term:"abdussalam@terminal:~$ firebase deploy\n✔ auth ok\n✔ firestore ok\n✔ rules secured"
+  },
+  {
+    title:"Client C • Supabase Backend",
+    stars:5,
+    text:"Supabase RLS + API berjalan mulus. Database schema rapi dan cepat. Admin panel juga enak dipakai.",
+    name:"Client C",
+    role:"Project Manager",
+    avatar:"https://i.pravatar.cc/100?img=32",
+    term:"abdussalam@terminal:~$ psql\n✔ schema ready\n✔ rls enabled\n✔ api stable"
+  },
+  {
+    title:"Client D • UI Modern",
+    stars:5,
+    text:"UI neon dark mode keren banget. Animasi halus. Cocok buat portfolio dan app production.",
+    name:"Client D",
+    role:"UI Reviewer",
+    avatar:"https://i.pravatar.cc/100?img=42",
+    term:"abdussalam@terminal:~$ ui --render\n✔ neon glow\n✔ smooth animation\n✔ responsive"
+  }
+];
+
+function openTesti(i){
+  const t = testis[i];
+  document.getElementById("testiCard").classList.add("show");
+  document.getElementById("testiText").textContent = t.text;
+  document.getElementById("testiName").textContent = t.name;
+  document.getElementById("testiRole").textContent = t.role;
+  document.getElementById("miniTerm").textContent = t.term;
+
+  document.getElementById("testiPop").style.display="flex";
+  document.getElementById("popTitle").textContent=t.title;
+  document.getElementById("popText").textContent=t.text;
+  document.getElementById("popName").textContent=t.name;
+  document.getElementById("popRole").textContent=t.role;
+  document.getElementById("popAvatar").src=t.avatar;
+
+  let s="";
+  for(let k=0;k<t.stars;k++) s += '<i class="fa-solid fa-star"></i> ';
+  document.getElementById("popStars").innerHTML=s;
+}
+function closeTestiPop(){
+  document.getElementById("testiPop").style.display="none";
+}
+
+/* ====== IMAGE POPUP ====== */
+let popImageUrl="";
+let popCmd="";
+function openImagePop(title, desc, imgUrl, cmd){
+  popImageUrl = imgUrl;
+  popCmd = cmd || "";
+  document.getElementById("imgTitle").textContent = title;
+  document.getElementById("imgDesc").textContent = desc;
+  document.getElementById("imgView").src = imgUrl;
+  document.getElementById("imgPop").style.display="flex";
+}
+function closeImagePop(){
+  document.getElementById("imgPop").style.display="none";
+}
+function copyFromPop(){
+  if(!popCmd){toast("Tidak ada command");return;}
+  navigator.clipboard.writeText(popCmd);
+  toast("Copied CMD: " + popCmd);
+}
+function openFromPop(){
+  if(!popImageUrl) return;
+  window.open(popImageUrl,"_blank");
+}
+
+/* ====== SKILL POPUP ====== */
+function openSkillPop(name, desc, badges, iconClass){
+  document.getElementById("skillPopName").textContent = name;
+  document.getElementById("skillPopDesc").textContent = desc;
+  document.getElementById("skillPopBadges").textContent = badges;
+  document.getElementById("skillPopTitle").textContent = "Detail Skill";
+
+  const iconWrap = document.getElementById("skillPopIcon");
+  iconWrap.innerHTML = `<i class="${iconClass}"></i>`;
+
+  document.getElementById("skillPop").style.display="flex";
+}
+function closeSkillPop(){
+  document.getElementById("skillPop").style.display="none";
+}
+
+/* ====== CLOSE POPUP CLICK OUTSIDE ====== */
+document.addEventListener("click",(e)=>{
+  const req = document.getElementById("reqPop");
+  if(e.target===req) closeRequest();
+
+  const tp = document.getElementById("testiPop");
+  if(e.target===tp) closeTestiPop();
+
+  const cp = document.getElementById("certPop");
+  if(e.target===cp) closeCert();
+
+  const ip = document.getElementById("imgPop");
+  if(e.target===ip) closeImagePop();
+
+  const sp = document.getElementById("skillPop");
+  if(e.target===sp) closeSkillPop();
+});
+</script>
+<!-- ====== FLOAT REQUEST BUTTON + MINI NEON POPUP (BODY ONLY) ====== -->
+
+<!-- FLOAT BUTTON (TENGAH) -->
+<div class="abdus-float-request">
+  <button class="abdus-float-btn" id="abdusOpenReq" type="button">
+    <span class="abdus-float-ic">⚡</span>
+    <span class="abdus-float-text">REQUEST</span>
+    <span class="abdus-float-glow"></span>
+  </button>
+</div>
+
+<!-- MODAL -->
+<div class="abdus-req-modal" id="abdusReqModal" aria-hidden="true">
+  <div class="abdus-req-backdrop" id="abdusReqClose"></div>
+
+  <div class="abdus-req-card" role="dialog" aria-modal="true">
+    <button class="abdus-req-x" id="abdusReqX" aria-label="Close">✕</button>
+
+    <div class="abdus-req-head">
+      <div class="abdus-req-badge">NEON ORDER</div>
+      <h2 class="abdus-req-title">Request Project</h2>
+      <p class="abdus-req-sub">Isi cepat lalu kirim WA / Email 🔥</p>
+    </div>
+
+    <div class="abdus-req-form">
+      <label class="abdus-req-label">Nama</label>
+      <input class="abdus-req-input" id="abdusNama" type="text" placeholder="Nama kamu..." />
+
+      <label class="abdus-req-label">Project</label>
+      <select class="abdus-req-input" id="abdusJenis">
+        <option>Flutter App</option>
+        <option>FlutterFlow</option>
+        <option>Firebase</option>
+        <option>Supabase</option>
+        <option>MySQL</option>
+        <option>phpMyAdmin</option>
+        <option>Backend API</option>
+        <option>IT Security</option>
+      </select>
+
+      <label class="abdus-req-label">Email</label>
+      <input class="abdus-req-input" id="abdusEmail" type="email" placeholder="kamu@email.com" />
+
+      <label class="abdus-req-label">WhatsApp</label>
+      <input class="abdus-req-input" id="abdusWa" type="tel" placeholder="08xxxxxxxxxx" />
+
+      <label class="abdus-req-label">Deskripsi</label>
+      <textarea class="abdus-req-input abdus-req-area" id="abdusDesk" placeholder="Contoh: aplikasi toko, login, admin panel..."></textarea>
+
+      <div class="abdus-req-actions">
+        <button class="abdus-req-btn abdus-req-btn-wa" id="abdusSendWA" type="button">
+          💬 WhatsApp
+        </button>
+
+        <button class="abdus-req-btn abdus-req-btn-mail" id="abdusSendMail" type="button">
+          ✉️ Email
+        </button>
+
+        <a class="abdus-req-btn abdus-req-btn-tg" target="_blank"
+           href="https://t.me/riski_login_bot?start=login">
+          🚀 Telegram Bot
+        </a>
+      </div>
+
+      <div class="abdus-req-mini">
+        <span>📞 083155620630</span>
+        <span>📧 admin@abdussalam.store</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ===== Floating Button (TENGAH BAWAH) ===== */
+  .abdus-float-request{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    z-index:9998;
+  }
+
+  .abdus-float-btn{
+    border:none;
+    cursor:pointer;
+    width:190px;
+    height:54px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#ff0000,#ffd400,#ffffff,#111111);
+    color:#0b0b0b;
+    font-weight:1000;
+    letter-spacing:1px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:
+      0 18px 60px rgba(0,0,0,.65),
+      0 0 30px rgba(255,0,0,.25),
+      0 0 30px rgba(255,212,0,.20),
+      0 0 30px rgba(255,255,255,.15);
+    animation:abdusFloatPulse 1.05s infinite;
+  }
+
+  @keyframes abdusFloatPulse{
+    0%,100%{transform:scale(1); filter:saturate(1)}
+    50%{transform:scale(1.05); filter:saturate(1.3)}
+  }
+
+  .abdus-float-ic{
+    width:32px;height:32px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:rgba(0,0,0,.25);
+    box-shadow:0 0 0 5px rgba(255,255,255,.18);
+    animation:abdusBlinkDot .85s infinite;
+  }
+
+  @keyframes abdusBlinkDot{
+    0%,100%{opacity:1; transform:scale(1)}
+    50%{opacity:.55; transform:scale(.88)}
+  }
+
+  .abdus-float-text{
+    font-size:13px;
+    text-shadow:0 0 18px rgba(255,255,255,.35);
+    animation:abdusTextBlink .7s infinite;
+  }
+
+  @keyframes abdusTextBlink{
+    0%,100%{opacity:1}
+    50%{opacity:.55}
+  }
+
+  .abdus-float-glow{
+    position:absolute;
+    top:0;left:-40%;
+    width:40%;
+    height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
+    transform:skewX(-20deg);
+    animation:abdusShine 1.4s linear infinite;
+    pointer-events:none;
+  }
+
+  @keyframes abdusShine{
+    0%{left:-40%}
+    100%{left:120%}
+  }
+
+  /* ===== Modal ===== */
+  .abdus-req-modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    z-index:9999;
+  }
+  .abdus-req-modal.show{display:block}
+
+  .abdus-req-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+  }
+
+  /* ===== POPUP MINI (DIKECILIN) ===== */
+  .abdus-req-card{
+    position:relative;
+    width:min(86vw, 360px);  /* KECIL */
+    margin:5vh auto;         /* lebih pas */
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(10,10,10,.95), rgba(0,0,0,.95));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 22px 70px rgba(0,0,0,.75);
+    overflow:hidden;
+    animation:abdusPop .18s ease-out;
+  }
+
+  .abdus-req-card::after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:20px;
+    background:conic-gradient(from 0deg,#ff0000,#ffd400,#ffffff,#111111,#ff0000);
+    filter:blur(10px);
+    opacity:.55;
+    animation:abdusBorderSpin 2.4s linear infinite;
+    z-index:0;
+  }
+
+  .abdus-req-card::before{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:16px;
+    background:linear-gradient(180deg, rgba(10,10,10,.96), rgba(0,0,0,.96));
+    z-index:1;
+  }
+
+  @keyframes abdusBorderSpin{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+  }
+
+  @keyframes abdusPop{
+    from{transform:translateY(14px) scale(.98); opacity:0}
+    to{transform:translateY(0) scale(1); opacity:1}
+  }
+
+  .abdus-req-x{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:38px;height:38px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.04);
+    color:#ff3b3b;
+    font-size:16px;
+    cursor:pointer;
+    z-index:3;
+    box-shadow:0 0 18px rgba(255,0,0,.22);
+    animation:abdusXblink 1s infinite;
+  }
+
+  @keyframes abdusXblink{
+    0%,100%{opacity:1}
+    50%{opacity:.6}
+  }
+
+  .abdus-req-head{
+    position:relative;
+    z-index:2;
+    padding:14px 14px 4px;
+    text-align:center;
+  }
+
+  .abdus-req-badge{
+    display:inline-block;
+    padding:7px 12px;
+    border-radius:999px;
+    font-weight:900;
+    font-size:10px;
+    color:#0b0b0b;
+    background:linear-gradient(90deg,#ff0000,#ffd400,#ffffff);
+    box-shadow:0 10px 40px rgba(0,0,0,.55);
+    animation:abdusTextBlink .9s infinite;
+  }
+
+  .abdus-req-title{
+    margin-top:8px;
+    font-size:20px;
+    font-weight:900;
+    color:#ffd400;
+    text-shadow:0 0 18px rgba(255,212,0,.35);
+  }
+
+  .abdus-req-sub{
+    margin-top:4px;
+    font-size:11px;
+    color:rgba(255,255,255,.6);
+  }
+
+  .abdus-req-form{
+    position:relative;
+    z-index:2;
+    padding:10px 14px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .abdus-req-label{
+    font-size:11px;
+    color:rgba(255,255,255,.7);
+    margin-top:2px;
+  }
+
+  .abdus-req-input{
+    width:100%;
+    padding:11px 12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.03);
+    color:rgba(255,255,255,.92);
+    outline:none;
+  }
+
+  .abdus-req-input:focus{
+    border-color:rgba(255,212,0,.55);
+    box-shadow:0 0 0 4px rgba(255,212,0,.12);
+  }
+
+  .abdus-req-area{
+    min-height:70px;
+    resize:none;
+  }
+
+  .abdus-req-actions{
+    margin-top:8px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .abdus-req-actions a{grid-column:1 / -1;}
+
+  .abdus-req-btn{
+    border:none;
+    border-radius:16px;
+    padding:12px 12px;
+    font-weight:900;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 14px 40px rgba(0,0,0,.55);
+    transition:.18s ease;
+    font-size:13px;
+  }
+
+  .abdus-req-btn:hover{transform:translateY(-2px) scale(1.01)}
+  .abdus-req-btn:active{transform:translateY(0) scale(.99)}
+
+  .abdus-req-btn::after{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-60%;
+    width:60%;
+    height:180%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+    transform:skewX(-20deg);
+    animation:abdusShine 1.8s linear infinite;
+    opacity:.85;
+  }
+
+  .abdus-req-btn-wa{
+    background:linear-gradient(90deg,#ff0000,#ffd400);
+    color:#0b0b0b;
+  }
+
+  .abdus-req-btn-mail{
+    background:linear-gradient(90deg,#ffffff,#111111);
+    color:#ffffff;
+    border:1px solid rgba(255,255,255,.12);
+  }
+
+  .abdus-req-btn-tg{
+    background:linear-gradient(90deg,#ffd400,#ffffff);
+    color:#0b0b0b;
+  }
+
+  .abdus-req-mini{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+    font-size:10.5px;
+    color:rgba(255,255,255,.55);
+  }
+
+  /* ============================= */
+  /* SPARK / BINTANG MELEDAK (NEW) */
+  /* ============================= */
+  .abdus-spark{
+    position:fixed;
+    width:10px;height:10px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:999999;
+    background:radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,0));
+    filter:drop-shadow(0 0 14px rgba(255,255,255,.9));
+    animation:abdusSpark .7s ease-out forwards;
+  }
+  @keyframes abdusSpark{
+    0%{transform:translate(0,0) scale(1); opacity:1}
+    100%{transform:translate(var(--dx), var(--dy)) scale(.2); opacity:0}
+  }
+</style>
+
+<script>
+  const ABDUS_WA = "083155620630";
+  const ABDUS_EMAIL = "admin@abdussalam.store";
+
+  const openBtn = document.getElementById("abdusOpenReq");
+  const modal = document.getElementById("abdusReqModal");
+  const closeBg = document.getElementById("abdusReqClose");
+  const closeX = document.getElementById("abdusReqX");
+
+  const nama = document.getElementById("abdusNama");
+  const jenis = document.getElementById("abdusJenis");
+  const email = document.getElementById("abdusEmail");
+  const wa = document.getElementById("abdusWa");
+  const desk = document.getElementById("abdusDesk");
+
+  const btnWA = document.getElementById("abdusSendWA");
+  const btnMail = document.getElementById("abdusSendMail");
+
+  function openModal(){
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden","false");
+    boomSpark(window.innerWidth/2, window.innerHeight/2);
+  }
+
+  function closeModal(){
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden","true");
+  }
+
+  openBtn.addEventListener("click", (e)=>{
+    openModal();
+    boomSpark(e.clientX, e.clientY);
+  });
+
+  closeBg.addEventListener("click", closeModal);
+  closeX.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") closeModal();
+  });
+
+  btnWA.addEventListener("click", (e)=>{
+    const msg =
+`🔥 REQUEST PROJECT - ABDUSSALAM 🔥
+Nama: ${nama.value || "-"}
+Project: ${jenis.value || "-"}
+Email: ${email.value || "-"}
+WhatsApp: ${wa.value || "-"}
+Deskripsi: ${desk.value || "-"}
+
+📌 Kirim ke: ${ABDUS_WA}`;
+
+    const waNumber = ABDUS_WA.replace(/^0/,"62").replace(/\D/g,"");
+    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+    boomSpark(e.clientX, e.clientY);
+  });
+
+  btnMail.addEventListener("click", (e)=>{
+    const subject = `Request Project - ${jenis.value || "ABDUSSALAM"}`;
+    const body =
+`Halo Abdussalam,
+
+Saya mau request project.
+
+Nama: ${nama.value || "-"}
+Project: ${jenis.value || "-"}
+Email: ${email.value || "-"}
+WhatsApp: ${wa.value || "-"}
+Deskripsi:
+${desk.value || "-"}
+
+Terima kasih.`;
+
+    const url = `mailto:${ABDUS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = url;
+    boomSpark(e.clientX, e.clientY);
+  });
+
+  function boomSpark(x,y){
+    for(let i=0;i<18;i++){
+      const s = document.createElement("span");
+      s.className = "abdus-spark";
+      const ang = Math.random()*Math.PI*2;
+      const dist = 25 + Math.random()*65;
+      const dx = Math.cos(ang)*dist;
+      const dy = Math.sin(ang)*dist;
+      s.style.left = x+"px";
+      s.style.top = y+"px";
+      s.style.setProperty("--dx", dx+"px");
+      s.style.setProperty("--dy", dy+"px");
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(), 750);
+    }
+  }
+
+  document.addEventListener("click",(e)=>{
+    if(Math.random() < 0.25) boomSpark(e.clientX, e.clientY);
+  });
+</script>
+<!-- ====== TERMINAL UBUNTU NEON (BODY ONLY) ====== -->
+<section class="abdus-terminal-wrap">
+  <div class="abdus-terminal">
+    <div class="abdus-terminal-top">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <div class="abdus-terminal-title">Ubuntu Terminal • ABDUSSALAM</div>
+    </div>
+
+    <div class="abdus-terminal-body">
+      <div class="line">
+        <span class="user">abdus</span><span class="at">@</span><span class="host">ubuntu</span>
+        <span class="colon">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="cmd typing">whoami</span>
+      </div>
+
+      <div class="out neon">abdussalam</div>
+
+      <div class="line">
+        <span class="user">abdus</span><span class="at">@</span><span class="host">ubuntu</span>
+        <span class="colon">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="cmd typing2">echo "HOLLYWOOD MODE"</span>
+      </div>
+
+      <div class="out hollywood">✨ HOLLYWOOD MODE ✨</div>
+
+      <div class="line">
+        <span class="user">abdus</span><span class="at">@</span><span class="host">ubuntu</span>
+        <span class="colon">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="cmd typing3">cat address.txt</span>
+      </div>
+
+      <div class="out addr">
+        📍 Jl. Aengsareh, Takong, Sampang, Madura, Indonesia
+      </div>
+
+      <div class="cursor-line">
+        <span class="user">abdus</span><span class="at">@</span><span class="host">ubuntu</span>
+        <span class="colon">:</span><span class="path">~</span><span class="dollar">$</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+
+    <div class="abdus-stars"></div>
+  </div>
+</section>
+
+<style>
+  .abdus-terminal-wrap{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:30px 14px 90px;
+  }
+
+  .abdus-terminal{
+    width:min(94vw, 520px);
+    border-radius:20px;
+    background:linear-gradient(180deg, rgba(5,5,5,.96), rgba(0,0,0,.96));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:
+      0 30px 90px rgba(0,0,0,.8),
+      0 0 40px rgba(255,0,0,.10),
+      0 0 40px rgba(255,212,0,.10),
+      0 0 40px rgba(255,255,255,.08);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* neon border glow */
+  .abdus-terminal::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#ff0000,#ffd400,#ffffff,#111111,#ff0000);
+    filter:blur(14px);
+    opacity:.55;
+    animation:spinGlow 3.5s linear infinite;
+  }
+  .abdus-terminal::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(10,10,10,.96), rgba(0,0,0,.96));
+    z-index:1;
+  }
+
+  @keyframes spinGlow{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+  }
+
+  .abdus-terminal-top{
+    position:relative;
+    z-index:2;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    box-shadow:0 0 16px rgba(255,255,255,.18);
+  }
+  .dot.red{background:#ff3b3b}
+  .dot.yellow{background:#ffd400}
+  .dot.green{background:#00ff88}
+
+  .abdus-terminal-title{
+    margin-left:8px;
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.6px;
+    color:rgba(255,255,255,.7);
+    text-transform:uppercase;
+  }
+
+  .abdus-terminal-body{
+    position:relative;
+    z-index:2;
+    padding:14px 16px 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  .line{margin:6px 0 2px}
+  .user{color:#ff0000; font-weight:900; text-shadow:0 0 10px rgba(255,0,0,.35)}
+  .at{color:#ffffff}
+  .host{color:#ffd400; font-weight:900; text-shadow:0 0 10px rgba(255,212,0,.35)}
+  .colon{color:#ffffff}
+  .path{color:#00f5ff; text-shadow:0 0 12px rgba(0,245,255,.25)}
+  .dollar{color:#00ff88; font-weight:900; text-shadow:0 0 12px rgba(0,255,136,.25)}
+  .cmd{color:rgba(255,255,255,.9)}
+
+  .out{
+    margin:4px 0 10px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+  }
+
+  .neon{
+    color:#ffffff;
+    text-shadow:
+      0 0 10px rgba(255,255,255,.35),
+      0 0 22px rgba(255,212,0,.18);
+    font-weight:900;
+  }
+
+  .hollywood{
+    font-weight:1000;
+    color:#ffd400;
+    text-align:center;
+    letter-spacing:1px;
+    text-shadow:
+      0 0 12px rgba(255,212,0,.35),
+      0 0 26px rgba(255,0,0,.22),
+      0 0 34px rgba(255,255,255,.18);
+    animation:hollyPulse 1.2s infinite;
+  }
+
+  @keyframes hollyPulse{
+    0%,100%{transform:scale(1); filter:brightness(1)}
+    50%{transform:scale(1.03); filter:brightness(1.35)}
+  }
+
+  .addr{
+    color:#ffffff;
+    font-weight:800;
+    text-shadow:0 0 12px rgba(255,255,255,.25);
+  }
+
+  /* typing animations */
+  .typing{
+    display:inline-block;
+    width:0;
+    overflow:hidden;
+    white-space:nowrap;
+    animation:type1 1.2s steps(12,end) forwards;
+  }
+  @keyframes type1{to{width:6ch}}
+
+  .typing2{
+    display:inline-block;
+    width:0;
+    overflow:hidden;
+    white-space:nowrap;
+    animation:type2 1.6s steps(20,end) forwards;
+    animation-delay:1.25s;
+  }
+  @keyframes type2{to{width:20ch}}
+
+  .typing3{
+    display:inline-block;
+    width:0;
+    overflow:hidden;
+    white-space:nowrap;
+    animation:type3 1.2s steps(16,end) forwards;
+    animation-delay:2.9s;
+  }
+  @keyframes type3{to{width:14ch}}
+
+  /* cursor blink */
+  .cursor-line{margin-top:8px}
+  .cursor{
+    display:inline-block;
+    width:10px;height:18px;
+    background:#ffffff;
+    margin-left:6px;
+    border-radius:4px;
+    box-shadow:
+      0 0 14px rgba(255,255,255,.55),
+      0 0 24px rgba(255,212,0,.25);
+    animation:blink 0.7s infinite;
+  }
+  @keyframes blink{
+    0%,100%{opacity:1}
+    50%{opacity:0}
+  }
+
+  /* tiny stars background */
+  .abdus-stars{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,.25) 1px, transparent 2px),
+      radial-gradient(circle at 70% 40%, rgba(255,212,0,.25) 1px, transparent 2px),
+      radial-gradient(circle at 30% 80%, rgba(255,0,0,.25) 1px, transparent 2px),
+      radial-gradient(circle at 90% 70%, rgba(255,255,255,.18) 1px, transparent 2px);
+    background-size: 120px 120px;
+    opacity:.25;
+    animation:starsMove 6s linear infinite;
+  }
+  @keyframes starsMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(-20px)}
+  }
+</style>
+<!-- ===================== TESTIMONI JALAN (SLIDER) ===================== -->
+<section class="abdus-testimoni-wrap" id="testimoni">
+  <div class="abdus-testi-head">
+    <h2 class="abdus-testi-title">Testimoni</h2>
+    <p class="abdus-testi-sub">Geser otomatis • klik kartu untuk detail • neon clean 🔥</p>
+  </div>
+
+  <!-- ===== MARQUEE / JALAN ===== -->
+  <div class="abdus-marquee">
+    <div class="abdus-track">
+
+      <!-- CARD 1 -->
+      <article class="abdus-testi-card" data-name="Michael Carter"
+        data-role="CEO • Startup App"
+        data-stars="5"
+        data-app="Flutter Android App + Firebase Auth"
+        data-desc="Aplikasi sangat cepat, UI neon dark premium. Login Firebase aman, performa stabil. Sangat recommended!"
+        data-loc="📍 New York, United States 🇺🇸"
+        data-price="$1,250"
+        data-time="7 Days">
+        <div class="abdus-top">
+          <div class="abdus-appbadge">📱 Android App • Flutter</div>
+          <div class="abdus-stars">★★★★★</div>
+        </div>
+
+        <div class="abdus-preview">
+          <div class="abdus-img">
+            <span class="abdus-img-glow"></span>
+            <span class="abdus-img-text">APP UI</span>
+          </div>
+          <div class="abdus-appinfo">
+            <div class="abdus-appname">Flutter + Firebase</div>
+            <div class="abdus-appnote">Login • Dashboard • Animasi Smooth</div>
+          </div>
+        </div>
+
+        <div class="abdus-quote">
+          “UI neon dark mode keren banget. Animasi halus, cocok buat production.”
+        </div>
+
+        <div class="abdus-foot">
+          <div class="abdus-user">
+            <div class="abdus-avatar">MC</div>
+            <div>
+              <div class="abdus-name">Michael Carter</div>
+              <div class="abdus-loc">New York, United States 🇺🇸</div>
+            </div>
+          </div>
+          <button class="abdus-detail-btn">Detail</button>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="abdus-testi-card" data-name="Sophia Müller"
+        data-role="Product Manager"
+        data-stars="5"
+        data-app="Website Portfolio + Request Popup + WhatsApp"
+        data-desc="Webnya clean, modern, neon glow elegan. Popup request rapi, tombol WA & email langsung jalan."
+        data-loc="📍 Berlin, Germany 🇩🇪"
+        data-price="€980"
+        data-time="5 Days">
+        <div class="abdus-top">
+          <div class="abdus-appbadge">🌐 Website • Portfolio</div>
+          <div class="abdus-stars">★★★★★</div>
+        </div>
+
+        <div class="abdus-preview">
+          <div class="abdus-img">
+            <span class="abdus-img-glow"></span>
+            <span class="abdus-img-text">WEB UI</span>
+          </div>
+          <div class="abdus-appinfo">
+            <div class="abdus-appname">Neon Portfolio</div>
+            <div class="abdus-appnote">Popup • Order • Responsive</div>
+          </div>
+        </div>
+
+        <div class="abdus-quote">
+          “Popup request + tombol order sangat rapi. Looks premium banget!”
+        </div>
+
+        <div class="abdus-foot">
+          <div class="abdus-user">
+            <div class="abdus-avatar">SM</div>
+            <div>
+              <div class="abdus-name">Sophia Müller</div>
+              <div class="abdus-loc">Berlin, Germany 🇩🇪</div>
+            </div>
+          </div>
+          <button class="abdus-detail-btn">Detail</button>
+        </div>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="abdus-testi-card" data-name="Lucas Ferreira"
+        data-role="Founder • Store App"
+        data-stars="5"
+        data-app="Admin Panel + MySQL + PHPMyAdmin"
+        data-desc="Panel admin sangat cepat. Struktur database rapih, query aman. Support mantap!"
+        data-loc="📍 São Paulo, Brazil 🇧🇷"
+        data-price="R$ 2.100"
+        data-time="6 Days">
+        <div class="abdus-top">
+          <div class="abdus-appbadge">🗄️ Backend • MySQL</div>
+          <div class="abdus-stars">★★★★★</div>
+        </div>
+
+        <div class="abdus-preview">
+          <div class="abdus-img">
+            <span class="abdus-img-glow"></span>
+            <span class="abdus-img-text">ADMIN</span>
+          </div>
+          <div class="abdus-appinfo">
+            <div class="abdus-appname">Admin Panel</div>
+            <div class="abdus-appnote">CRUD • Role • Security</div>
+          </div>
+        </div>
+
+        <div class="abdus-quote">
+          “Database rapih & aman. Admin panelnya responsif dan cepat.”
+        </div>
+
+        <div class="abdus-foot">
+          <div class="abdus-user">
+            <div class="abdus-avatar">LF</div>
+            <div>
+              <div class="abdus-name">Lucas Ferreira</div>
+              <div class="abdus-loc">São Paulo, Brazil 🇧🇷</div>
+            </div>
+          </div>
+          <button class="abdus-detail-btn">Detail</button>
+        </div>
+      </article>
+
+      <!-- CARD 4 -->
+      <article class="abdus-testi-card" data-name="Aisha Khan"
+        data-role="App Owner"
+        data-stars="5"
+        data-app="FlutterFlow + Supabase + Realtime"
+        data-desc="Realtime database lancar. Supabase auth aman. UI terlihat mahal dan profesional."
+        data-loc="📍 Dubai, United Arab Emirates 🇦🇪"
+        data-price="AED 3,400"
+        data-time="8 Days">
+        <div class="abdus-top">
+          <div class="abdus-appbadge">⚡ FlutterFlow • Supabase</div>
+          <div class="abdus-stars">★★★★★</div>
+        </div>
+
+        <div class="abdus-preview">
+          <div class="abdus-img">
+            <span class="abdus-img-glow"></span>
+            <span class="abdus-img-text">REALTIME</span>
+          </div>
+          <div class="abdus-appinfo">
+            <div class="abdus-appname">Realtime App</div>
+            <div class="abdus-appnote">Auth • Realtime • Push</div>
+          </div>
+        </div>
+
+        <div class="abdus-quote">
+          “Supabase realtime stabil. UI neon modern, beneran keren banget.”
+        </div>
+
+        <div class="abdus-foot">
+          <div class="abdus-user">
+            <div class="abdus-avatar">AK</div>
+            <div>
+              <div class="abdus-name">Aisha Khan</div>
+              <div class="abdus-loc">Dubai, UAE 🇦🇪</div>
+            </div>
+          </div>
+          <button class="abdus-detail-btn">Detail</button>
+        </div>
+      </article>
+
+      <!-- DUPLICATE for infinite scroll -->
+      <article class="abdus-testi-card clone"></article>
+      <article class="abdus-testi-card clone"></article>
+      <article class="abdus-testi-card clone"></article>
+      <article class="abdus-testi-card clone"></article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POPUP DETAIL TESTIMONI ===================== -->
+<div class="abdus-testi-pop" id="abdusTestiPop">
+  <div class="abdus-testi-pop-card">
+    <button class="abdus-pop-x" id="abdusTestiClose">✕</button>
+
+    <div class="abdus-pop-title">
+      <div class="abdus-pop-name" id="popName">Client</div>
+      <div class="abdus-pop-role" id="popRole">Role</div>
+    </div>
+
+    <div class="abdus-pop-stars" id="popStars">★★★★★</div>
+
+    <div class="abdus-pop-box">
+      <div class="abdus-pop-row">
+        <span class="k">📦 Aplikasi Pesanan</span>
+        <span class="v" id="popApp">-</span>
+      </div>
+      <div class="abdus-pop-row">
+        <span class="k">📍 Alamat</span>
+        <span class="v" id="popLoc">-</span>
+      </div>
+      <div class="abdus-pop-row">
+        <span class="k">⏱️ Estimasi</span>
+        <span class="v" id="popTime">-</span>
+      </div>
+      <div class="abdus-pop-row">
+        <span class="k">💰 Budget</span>
+        <span class="v" id="popPrice">-</span>
+      </div>
+    </div>
+
+    <div class="abdus-pop-desc" id="popDesc">
+      -
+    </div>
+
+    <div class="abdus-pop-note">
+      ⭐ Rating tinggi karena: UI rapi • cepat • aman • support cepat • hasil premium.
+    </div>
+  </div>
+</div>
+
+<style>
+  .abdus-testimoni-wrap{
+    padding:40px 14px 10px;
+    max-width:980px;
+    margin:0 auto;
+  }
+  .abdus-testi-head{
+    text-align:center;
+    margin-bottom:14px;
+  }
+  .abdus-testi-title{
+    font-size:30px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#ff004c,#ffd400,#ffffff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 22px rgba(255,0,76,.25);
+  }
+  .abdus-testi-sub{
+    color:rgba(255,255,255,.65);
+    font-size:13px;
+    margin-top:6px;
+  }
+
+  .abdus-marquee{
+    overflow:hidden;
+    position:relative;
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.02);
+    box-shadow:0 22px 70px rgba(0,0,0,.55);
+  }
+
+  .abdus-track{
+    display:flex;
+    gap:14px;
+    padding:14px;
+    width:max-content;
+    animation:abdusMove 22s linear infinite;
+  }
+
+  @keyframes abdusMove{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  .abdus-testi-card{
+    width:290px;
+    border-radius:20px;
+    padding:14px;
+    background:linear-gradient(180deg, rgba(10,10,10,.95), rgba(0,0,0,.92));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 18px 55px rgba(0,0,0,.65);
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.2s ease;
+  }
+  .abdus-testi-card:hover{
+    transform:translateY(-3px) scale(1.01);
+    box-shadow:0 22px 75px rgba(0,0,0,.8);
+  }
+
+  .abdus-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+  }
+  .abdus-appbadge{
+    font-size:11px;
+    font-weight:900;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    color:rgba(255,255,255,.85);
+  }
+  .abdus-stars{
+    color:#ffd400;
+    font-weight:1000;
+    letter-spacing:2px;
+    text-shadow:0 0 16px rgba(255,212,0,.25);
+  }
+
+  .abdus-preview{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:10px;
+  }
+  .abdus-img{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.10);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .abdus-img-glow{
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#ff004c,#ffd400,#ffffff,#111111,#ff004c);
+    filter:blur(14px);
+    opacity:.35;
+    animation:abdusSpin 3s linear infinite;
+  }
+  @keyframes abdusSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .abdus-img-text{
+    position:relative;
+    z-index:2;
+    font-size:12px;
+    font-weight:1000;
+    color:#fff;
+    text-shadow:0 0 14px rgba(255,255,255,.35);
+  }
+
+  .abdus-appinfo .abdus-appname{
+    font-weight:1000;
+    color:#fff;
+    font-size:14px;
+  }
+  .abdus-appinfo .abdus-appnote{
+    color:rgba(255,255,255,.65);
+    font-size:12px;
+    margin-top:2px;
+  }
+
+  .abdus-quote{
+    font-size:13px;
+    color:rgba(255,255,255,.82);
+    line-height:1.45;
+    padding:10px 12px;
+    border-radius:16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+  }
+
+  .abdus-foot{
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .abdus-user{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .abdus-avatar{
+    width:38px;height:38px;
+    border-radius:14px;
+    background:linear-gradient(90deg,#ff004c,#ffd400,#ffffff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:1000;
+    color:#06101f;
+  }
+  .abdus-name{
+    font-weight:1000;
+    color:#fff;
+    font-size:13px;
+  }
+  .abdus-loc{
+    color:rgba(255,255,255,.6);
+    font-size:11px;
+  }
+
+  .abdus-detail-btn{
+    border:none;
+    cursor:pointer;
+    padding:10px 12px;
+    border-radius:14px;
+    font-weight:1000;
+    color:#06101f;
+    background:linear-gradient(90deg,#ff004c,#ffd400,#ffffff);
+    box-shadow:0 14px 40px rgba(0,0,0,.55);
+    transition:.2s ease;
+  }
+  .abdus-detail-btn:hover{
+    transform:scale(1.03);
+  }
+
+  /* POPUP */
+  .abdus-testi-pop{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    padding:16px;
+    backdrop-filter: blur(8px);
+  }
+  .abdus-testi-pop.active{display:flex}
+
+  .abdus-testi-pop-card{
+    width:min(92vw, 390px);
+    border-radius:22px;
+    padding:16px 14px;
+    background:linear-gradient(180deg, rgba(10,10,10,.96), rgba(0,0,0,.95));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 25px 90px rgba(0,0,0,.8);
+    position:relative;
+    overflow:hidden;
+  }
+  .abdus-testi-pop-card:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#ff004c,#ffd400,#ffffff,#111111,#ff004c);
+    filter:blur(18px);
+    opacity:.35;
+    animation:abdusSpin 3.4s linear infinite;
+  }
+  .abdus-testi-pop-card > *{position:relative; z-index:2}
+
+  .abdus-pop-x{
+    position:absolute;
+    top:10px; right:10px;
+    width:38px;height:38px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.03);
+    color:#fff;
+    cursor:pointer;
+    font-weight:1000;
+  }
+
+  .abdus-pop-title{
+    text-align:center;
+    margin-top:10px;
+  }
+  .abdus-pop-name{
+    font-size:18px;
+    font-weight:1000;
+    color:#fff;
+  }
+  .abdus-pop-role{
+    font-size:12px;
+    color:rgba(255,255,255,.6);
+    margin-top:2px;
+  }
+
+  .abdus-pop-stars{
+    text-align:center;
+    margin:10px 0 10px;
+    color:#ffd400;
+    font-weight:1000;
+    letter-spacing:3px;
+    text-shadow:0 0 18px rgba(255,212,0,.25);
+  }
+
+  .abdus-pop-box{
+    border-radius:18px;
+    padding:12px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .abdus-pop-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 0;
+    font-size:12px;
+  }
+  .abdus-pop-row .k{
+    color:rgba(255,255,255,.6);
+    font-weight:900;
+  }
+  .abdus-pop-row .v{
+    color:#fff;
+    font-weight:900;
+    text-align:right;
+  }
+
+  .abdus-pop-desc{
+    margin-top:10px;
+    padding:12px;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    color:rgba(255,255,255,.85);
+    font-size:13px;
+    line-height:1.45;
+  }
+
+  .abdus-pop-note{
+    margin-top:10px;
+    font-size:12px;
+    color:rgba(255,255,255,.65);
+    text-align:center;
+  }
+
+  @media (max-width:420px){
+    .abdus-testi-card{width:270px}
+  }
+</style>
+
+<script>
+  // duplicate cards for infinite marquee
+  (function(){
+    const track = document.querySelector(".abdus-track");
+    if(!track) return;
+    const cards = Array.from(track.querySelectorAll(".abdus-testi-card:not(.clone)"));
+    const clones = track.querySelectorAll(".abdus-testi-card.clone");
+    clones.forEach((c,i)=>{
+      const src = cards[i % cards.length];
+      c.outerHTML = src.outerHTML.replace('abdus-testi-card"', 'abdus-testi-card"');
+    });
+  })();
+
+  // popup open
+  const pop = document.getElementById("abdusTestiPop");
+  const closeBtn = document.getElementById("abdusTestiClose");
+
+  function setStars(n){
+    let s="";
+    for(let i=0;i<n;i++) s+="★";
+    return s;
+  }
+
+  document.addEventListener("click",(e)=>{
+    const card = e.target.closest(".abdus-testi-card");
+    if(card && !card.classList.contains("clone")){
+      document.getElementById("popName").innerText = card.dataset.name || "Client";
+      document.getElementById("popRole").innerText = card.dataset.role || "";
+      document.getElementById("popStars").innerText = setStars(parseInt(card.dataset.stars||"5"));
+      document.getElementById("popApp").innerText = card.dataset.app || "-";
+      document.getElementById("popLoc").innerText = card.dataset.loc || "-";
+      document.getElementById("popPrice").innerText = card.dataset.price || "-";
+      document.getElementById("popTime").innerText = card.dataset.time || "-";
+      document.getElementById("popDesc").innerText = card.dataset.desc || "-";
+      pop.classList.add("active");
+    }
+
+    if(e.target.id==="abdusTestiClose"){
+      pop.classList.remove("active");
+    }
+    if(e.target===pop){
+      pop.classList.remove("active");
+    }
+  });
+</script>
+<!-- ===================== SLIDER JALAN (GAMBAR CODING/TERMINAL/FLUTTER) ===================== -->
+<section class="abdus-marquee2-wrap" id="abdus-marquee2">
+  <div class="abdus-marquee2-head">
+    <h2 class="abdus-marquee2-title">Showcase</h2>
+    <p class="abdus-marquee2-sub">Auto swipe • neon clean • berjalan terus 🔥</p>
+  </div>
+
+  <div class="abdus-marquee2">
+    <div class="abdus-marquee2-track">
+
+      <!-- CARD 1 -->
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">🖥️ Terminal Ubuntu</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img terminal">
+          <div class="abdus-term-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="abdus-term-title">abdus@ubuntu</span>
+          </div>
+          <pre class="abdus-term-text">
+<span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ flutter doctor
+✔ Flutter (stable)
+✔ Android toolchain
+✔ Chrome
+✔ VS Code
+<span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ build --neon --fast
+✔ success
+          </pre>
+        </div>
+
+        <div class="abdus-show-caption">Terminal neon Hollywood style ⚡</div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">🔥 Flutter UI</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img flutter">
+          <div class="abdus-phone">
+            <div class="abdus-phone-notch"></div>
+            <div class="abdus-phone-screen">
+              <div class="abdus-ui-row">
+                <div class="abdus-ui-pill"></div>
+                <div class="abdus-ui-pill small"></div>
+              </div>
+              <div class="abdus-ui-card"></div>
+              <div class="abdus-ui-card"></div>
+              <div class="abdus-ui-btn"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="abdus-show-caption">Flutter mobile app neon dark UI 📱</div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">⚡ Firebase</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img firebase">
+          <div class="abdus-fire-icon">🔥</div>
+          <div class="abdus-fire-lines">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="abdus-fire-text">
+            Auth • Firestore • Storage<br/>
+            Realtime • Secure Rules
+          </div>
+        </div>
+
+        <div class="abdus-show-caption">Firebase backend + realtime 🚀</div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">💻 Coding</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img code">
+          <pre class="abdus-code">
+<span class="k">class</span> <span class="c">Abdussalam</span> {
+  <span class="k">final</span> <span class="t">String</span> skill = <span class="s">'Flutter + Firebase'</span>;
+  <span class="t">bool</span> neonUI = <span class="k">true</span>;
+
+  <span class="t">void</span> build() {
+    <span class="f">print</span>(<span class="s">'Ship it 🚀'</span>);
+  }
+}
+          </pre>
+        </div>
+
+        <div class="abdus-show-caption">Coding style clean + cepat ⚡</div>
+      </div>
+
+      <!-- DUPLICATE SET (biar jalan terus tanpa putus) -->
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">🖥️ Terminal Ubuntu</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img terminal">
+          <div class="abdus-term-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="abdus-term-title">abdus@ubuntu</span>
+          </div>
+          <pre class="abdus-term-text">
+<span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ git status
+✔ clean
+<span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ deploy --production
+✔ done
+          </pre>
+        </div>
+
+        <div class="abdus-show-caption">Terminal vibes Hollywood 🔥</div>
+      </div>
+
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">🔥 Flutter UI</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img flutter">
+          <div class="abdus-phone">
+            <div class="abdus-phone-notch"></div>
+            <div class="abdus-phone-screen">
+              <div class="abdus-ui-row">
+                <div class="abdus-ui-pill"></div>
+                <div class="abdus-ui-pill small"></div>
+              </div>
+              <div class="abdus-ui-card"></div>
+              <div class="abdus-ui-card"></div>
+              <div class="abdus-ui-btn"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="abdus-show-caption">Flutter UI responsive + smooth ✨</div>
+      </div>
+
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">⚡ Firebase</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img firebase">
+          <div class="abdus-fire-icon">🔥</div>
+          <div class="abdus-fire-lines">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="abdus-fire-text">
+            Auth • Firestore • Storage<br/>
+            Fast • Stable • Secure
+          </div>
+        </div>
+
+        <div class="abdus-show-caption">Firebase siap production 😈</div>
+      </div>
+
+      <div class="abdus-show-card">
+        <div class="abdus-show-top">
+          <span class="abdus-show-tag">💻 Coding</span>
+          <span class="abdus-show-stars">★★★★★</span>
+        </div>
+
+        <div class="abdus-show-img code">
+          <pre class="abdus-code">
+<span class="k">Future</span><span class="t">&lt;void&gt;</span> <span class="f">order</span>() <span class="k">async</span> {
+  <span class="k">await</span> <span class="f">buildNeonUI</span>();
+  <span class="k">await</span> <span class="f">connectFirebase</span>();
+  <span class="f">print</span>(<span class="s">'Done ✅'</span>);
+}
+          </pre>
+        </div>
+
+        <div class="abdus-show-caption">Clean code + fast delivery 🚀</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .abdus-marquee2-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:36px 14px 10px;
+  }
+
+  .abdus-marquee2-head{
+    text-align:center;
+    margin-bottom:12px;
+  }
+
+  .abdus-marquee2-title{
+    font-size:30px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#00f5ff,#ff2bd6,#00ff88);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 24px rgba(0,245,255,.25);
+  }
+
+  .abdus-marquee2-sub{
+    font-size:12px;
+    color:rgba(255,255,255,.65);
+    margin-top:6px;
+  }
+
+  .abdus-marquee2{
+    overflow:hidden;
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.02);
+    box-shadow:0 24px 80px rgba(0,0,0,.65);
+    position:relative;
+  }
+
+  .abdus-marquee2-track{
+    display:flex;
+    gap:14px;
+    padding:14px;
+    width:max-content;
+    animation:abdusMarqueeGo 22s linear infinite;
+  }
+
+  /* pause saat hover */
+  .abdus-marquee2:hover .abdus-marquee2-track{
+    animation-play-state:paused;
+  }
+
+  @keyframes abdusMarqueeGo{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  .abdus-show-card{
+    width:280px;
+    border-radius:20px;
+    padding:14px;
+    background:linear-gradient(180deg, rgba(12,12,12,.95), rgba(0,0,0,.92));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 18px 60px rgba(0,0,0,.7);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .abdus-show-card:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#ff004c,#00f5ff,#00ff88,#ffd400,#ff004c);
+    filter:blur(18px);
+    opacity:.18;
+    animation:abdusSpin2 4s linear infinite;
+  }
+  @keyframes abdusSpin2{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .abdus-show-card > *{position:relative; z-index:2}
+
+  .abdus-show-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+  }
+
+  .abdus-show-tag{
+    font-size:11px;
+    font-weight:900;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    color:rgba(255,255,255,.86);
+  }
+
+  .abdus-show-stars{
+    color:#ffd400;
+    font-weight:1000;
+    letter-spacing:2px;
+    text-shadow:0 0 16px rgba(255,212,0,.25);
+  }
+
+  .abdus-show-img{
+    height:150px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.03);
+    overflow:hidden;
+    position:relative;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.4);
+  }
+
+  .abdus-show-caption{
+    margin-top:10px;
+    font-size:12px;
+    color:rgba(255,255,255,.72);
+  }
+
+  /* ===== TERMINAL CARD ===== */
+  .abdus-show-img.terminal{
+    background:radial-gradient(circle at top, rgba(0,255,136,.15), rgba(0,0,0,.92));
+  }
+  .abdus-term-bar{
+    height:34px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:0 10px;
+    background:rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    display:inline-block;
+  }
+  .dot.r{background:#ff3b3b}
+  .dot.y{background:#ffd400}
+  .dot.g{background:#00ff88}
+
+  .abdus-term-title{
+    margin-left:6px;
+    font-size:11px;
+    color:rgba(255,255,255,.65);
+    font-weight:900;
+  }
+  .abdus-term-text{
+    margin:0;
+    padding:10px 12px;
+    font-size:12px;
+    line-height:1.35;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    color:#b7ffd7;
+    text-shadow:0 0 12px rgba(0,255,136,.22);
+    white-space:pre-wrap;
+  }
+  .p1{color:#ff2bd6;font-weight:900}
+  .p2{color:#00f5ff;font-weight:900}
+  .p3{color:#00ff88;font-weight:900}
+
+  /* ===== FLUTTER CARD ===== */
+  .abdus-show-img.flutter{
+    background:radial-gradient(circle at top, rgba(0,245,255,.18), rgba(0,0,0,.92));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .abdus-phone{
+    width:105px;
+    height:135px;
+    border-radius:22px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.12);
+    position:relative;
+    box-shadow:0 0 25px rgba(0,245,255,.15);
+  }
+  .abdus-phone-notch{
+    position:absolute;
+    top:8px; left:50%;
+    transform:translateX(-50%);
+    width:44px;height:10px;
+    border-radius:999px;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .abdus-phone-screen{
+    position:absolute;
+    inset:18px 10px 10px 10px;
+    border-radius:16px;
+    background:linear-gradient(180deg, rgba(0,0,0,.65), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .abdus-ui-row{display:flex; gap:8px}
+  .abdus-ui-pill{
+    height:10px; flex:1;
+    border-radius:999px;
+    background:linear-gradient(90deg,#ff2bd6,#00f5ff,#00ff88);
+    opacity:.85;
+  }
+  .abdus-ui-pill.small{flex:.7; opacity:.55}
+  .abdus-ui-card{
+    height:24px;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 0 18px rgba(255,0,76,.08);
+  }
+  .abdus-ui-btn{
+    height:18px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#00ff88,#00f5ff);
+    margin-top:auto;
+    opacity:.9;
+  }
+
+  /* ===== FIREBASE CARD ===== */
+  .abdus-show-img.firebase{
+    background:radial-gradient(circle at top, rgba(255,212,0,.18), rgba(0,0,0,.92));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:8px;
+  }
+  .abdus-fire-icon{
+    font-size:36px;
+    filter:drop-shadow(0 0 18px rgba(255,212,0,.35));
+    animation:abdusFirePulse 1.1s infinite;
+  }
+  @keyframes abdusFirePulse{
+    0%,100%{transform:scale(1); opacity:1}
+    50%{transform:scale(1.12); opacity:.85}
+  }
+  .abdus-fire-lines{
+    display:flex;
+    gap:8px;
+  }
+  .abdus-fire-lines span{
+    width:18px;height:6px;border-radius:999px;
+    background:linear-gradient(90deg,#ffd400,#ff2bd6,#00f5ff);
+    opacity:.8;
+    animation:abdusLine 1s infinite;
+  }
+  .abdus-fire-lines span:nth-child(2){animation-delay:.15s}
+  .abdus-fire-lines span:nth-child(3){animation-delay:.3s}
+  @keyframes abdusLine{
+    0%,100%{transform:scaleX(1); opacity:.7}
+    50%{transform:scaleX(1.35); opacity:1}
+  }
+  .abdus-fire-text{
+    text-align:center;
+    font-size:12px;
+    color:rgba(255,255,255,.82);
+    line-height:1.3;
+  }
+
+  /* ===== CODING CARD ===== */
+  .abdus-show-img.code{
+    background:radial-gradient(circle at top, rgba(255,0,76,.16), rgba(0,0,0,.92));
+    padding:10px 12px;
+  }
+  .abdus-code{
+    margin:0;
+    font-size:12px;
+    line-height:1.35;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    color:rgba(255,255,255,.92);
+    white-space:pre-wrap;
+  }
+  .k{color:#00f5ff;font-weight:900}
+  .t{color:#00ff88;font-weight:900}
+  .c{color:#ffd400;font-weight:900}
+  .s{color:#ff2bd6;font-weight:900}
+  .f{color:#ffffff;font-weight:900}
+
+  @media (max-width:420px){
+    .abdus-show-card{width:260px}
+  }
+</style>
+<!-- ===================== TERMINAL UBUNTU NEON (DESKRIPSI + KEAHLIAN LENGKAP) ===================== -->
+<section class="abdus-terminal-wrap" id="terminal">
+  <div class="abdus-terminal">
+    <div class="abdus-term-top">
+      <div class="abdus-dots">
+        <span class="abdus-dot r"></span>
+        <span class="abdus-dot y"></span>
+        <span class="abdus-dot g"></span>
+      </div>
+      <div class="abdus-term-title">
+        <span class="glowA">abdus</span><span class="glowB">@ubuntu</span>
+        <span class="glowC">:~</span>
+        <span class="glowD">$</span>
+      </div>
+      <div class="abdus-term-badge">NEON • HOLLYWOOD • LIVE</div>
+    </div>
+
+    <div class="abdus-term-body">
+      <div class="abdus-term-line">
+        <span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ <span class="cmd">whoami</span>
+      </div>
+      <div class="abdus-term-out">
+        <span class="outNeon">ABDUSSALAM</span> — Flutter Developer • Firebase Specialist • Fullstack Builder 🚀
+      </div>
+
+      <div class="abdus-term-line">
+        <span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ <span class="cmd">cat</span> about_abdussalam.txt
+      </div>
+
+      <div class="abdus-term-out abdus-paragraph">
+        Halo! Aku <span class="outNeon2">Abdussalam</span> — developer yang fokus bikin aplikasi & website
+        dengan style <span class="outNeon3">neon modern</span>, cepat, clean, dan siap production.
+        Aku suka bikin UI yang <span class="blinkX">smooth</span>, animasi yang hidup,
+        dan sistem yang stabil pakai <span class="outNeon4">Firebase / Supabase / MySQL</span>.
+        <br><br>
+        Aku terbiasa handle project dari nol sampai jadi:
+        <span class="outNeon5">UI/UX → Frontend → Backend → Deploy</span>.
+        Targetku: hasil harus <b>keren</b>, <b>cepat</b>, dan <b>nyaman dipakai</b>.
+        Aku juga suka bikin fitur request order, popup, sistem admin, realtime database,
+        dan tampilan “Hollywood neon” yang beda dari yang lain ✨🔥
+      </div>
+
+      <div class="abdus-term-line">
+        <span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ <span class="cmd">skills</span> --full --neon
+      </div>
+
+      <div class="abdus-term-out abdus-grid">
+        <div class="abdus-skill-box">
+          <div class="abdus-skill-title">🔥 Mobile App</div>
+          <div class="abdus-skill-list">
+            • Flutter (UI Responsive + Animasi Smooth)<br>
+            • FlutterFlow (Build cepat + realtime)<br>
+            • State Management (Provider / GetX style)<br>
+            • Integrasi API + JSON + Auth
+          </div>
+        </div>
+
+        <div class="abdus-skill-box">
+          <div class="abdus-skill-title">⚡ Backend & Database</div>
+          <div class="abdus-skill-list">
+            • Firebase Auth • Firestore • Storage<br>
+            • Realtime Database • Rules Security<br>
+            • Supabase (Auth + Database + Storage)<br>
+            • MySQL / phpMyAdmin / REST API
+          </div>
+        </div>
+
+        <div class="abdus-skill-box">
+          <div class="abdus-skill-title">🌐 Web & UI</div>
+          <div class="abdus-skill-list">
+            • HTML • CSS • JavaScript<br>
+            • Neon UI / Anime Glow / Modern Dark<br>
+            • Popup Order • Form Request Project<br>
+            • Responsive Mobile Friendly
+          </div>
+        </div>
+
+        <div class="abdus-skill-box">
+          <div class="abdus-skill-title">🛡️ Security & Tools</div>
+          <div class="abdus-skill-list">
+            • Basic IT Security / Hardening<br>
+            • Deploy & Hosting Setup<br>
+            • Git / Versioning / Debugging<br>
+            • Performance & Clean Code
+          </div>
+        </div>
+      </div>
+
+      <div class="abdus-term-line">
+        <span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ <span class="cmd">contact</span> --fast
+      </div>
+
+      <div class="abdus-term-out abdus-contact">
+        📍 <b>Alamat:</b> Jl. Aengsareh Takong, Sampang, Madura, Indonesia<br>
+        📞 <b>WhatsApp:</b> <span class="outNeon6">083155620630</span><br>
+        ✉️ <b>Email:</b> <span class="outNeon7">admin@abdussalam.store</span><br>
+        ⭐ <span class="blinkX">Ready order project sekarang!</span>
+      </div>
+
+      <div class="abdus-term-line">
+        <span class="p1">abdus</span>@<span class="p2">ubuntu</span>:<span class="p3">~</span>$ <span class="cmd">echo</span> "<span class="blinkX">Ship it 🚀</span>"
+      </div>
+
+      <div class="abdus-term-out abdus-last">
+        <span class="outNeon8">Ship it 🚀</span> — Project kamu aku buat <b>keren</b>, <b>neon</b>, <b>cepat</b>, dan <b>rapi</b> 😈🔥
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .abdus-terminal-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:50px 14px 20px;
+  }
+
+  .abdus-terminal{
+    border-radius:22px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(5,10,18,.98), rgba(0,0,0,.92));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 30px 100px rgba(0,0,0,.75);
+    position:relative;
+  }
+
+  .abdus-terminal:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#00f5ff,#ff2bd6,#00ff88,#ffd400,#00f5ff);
+    filter:blur(22px);
+    opacity:.18;
+    animation:abdTermSpin 5s linear infinite;
+  }
+  @keyframes abdTermSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .abdus-terminal > *{position:relative; z-index:2}
+
+  .abdus-term-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px 14px;
+    background:rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.10);
+  }
+
+  .abdus-dots{display:flex; gap:6px; align-items:center}
+  .abdus-dot{width:10px;height:10px;border-radius:50%}
+  .abdus-dot.r{background:#ff3b3b}
+  .abdus-dot.y{background:#ffd400}
+  .abdus-dot.g{background:#00ff88}
+
+  .abdus-term-title{
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.2px;
+    text-shadow:0 0 14px rgba(0,255,136,.25);
+    white-space:nowrap;
+  }
+
+  .abdus-term-badge{
+    font-size:11px;
+    font-weight:900;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    color:rgba(255,255,255,.82);
+  }
+
+  .abdus-term-body{
+    padding:14px 16px 18px;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size:12.5px;
+    line-height:1.55;
+    color:rgba(255,255,255,.88);
+  }
+
+  .abdus-term-line{
+    margin-top:12px;
+    color:rgba(255,255,255,.92);
+  }
+
+  .abdus-term-out{
+    margin-top:6px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.35);
+  }
+
+  .cmd{
+    color:#00f5ff;
+    font-weight:900;
+    text-shadow:0 0 14px rgba(0,245,255,.25);
+  }
+
+  .p1{color:#ff2bd6;font-weight:900;text-shadow:0 0 12px rgba(255,43,214,.25)}
+  .p2{color:#00f5ff;font-weight:900;text-shadow:0 0 12px rgba(0,245,255,.25)}
+  .p3{color:#00ff88;font-weight:900;text-shadow:0 0 12px rgba(0,255,136,.25)}
+
+  .outNeon{color:#00ff88;font-weight:1000;text-shadow:0 0 18px rgba(0,255,136,.35)}
+  .outNeon2{color:#ffd400;font-weight:1000;text-shadow:0 0 18px rgba(255,212,0,.25)}
+  .outNeon3{color:#00f5ff;font-weight:1000;text-shadow:0 0 18px rgba(0,245,255,.25)}
+  .outNeon4{color:#ff2bd6;font-weight:1000;text-shadow:0 0 18px rgba(255,43,214,.25)}
+  .outNeon5{color:#ffffff;font-weight:1000;text-shadow:0 0 18px rgba(255,255,255,.15)}
+  .outNeon6{color:#00ff88;font-weight:1000}
+  .outNeon7{color:#00f5ff;font-weight:1000}
+  .outNeon8{color:#ff2bd6;font-weight:1000;text-shadow:0 0 18px rgba(255,43,214,.25)}
+
+  .blinkX{
+    animation:abdBlink 1s infinite;
+    font-weight:1000;
+  }
+  @keyframes abdBlink{
+    0%,100%{opacity:1; filter:drop-shadow(0 0 12px rgba(255,255,255,.25))}
+    50%{opacity:.35; filter:drop-shadow(0 0 22px rgba(0,245,255,.35))}
+  }
+
+  .abdus-paragraph{
+    color:rgba(255,255,255,.86);
+    text-shadow:0 0 14px rgba(0,0,0,.35);
+  }
+
+  .abdus-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+  }
+
+  .abdus-skill-box{
+    padding:12px;
+    border-radius:16px;
+    background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .abdus-skill-box:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:linear-gradient(90deg, rgba(0,245,255,.0), rgba(0,245,255,.18), rgba(255,43,214,.0));
+    opacity:.8;
+    animation:abdSweep 2.6s linear infinite;
+  }
+  @keyframes abdSweep{
+    0%{transform:translateX(-120%)}
+    100%{transform:translateX(120%)}
+  }
+  .abdus-skill-box > *{position:relative; z-index:2}
+
+  .abdus-skill-title{
+    font-size:13px;
+    font-weight:1000;
+    margin-bottom:8px;
+    background:linear-gradient(90deg,#00f5ff,#ff2bd6,#00ff88);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .abdus-skill-list{
+    color:rgba(255,255,255,.82);
+  }
+
+  .abdus-contact b{
+    color:#fff;
+    text-shadow:0 0 12px rgba(255,255,255,.15);
+  }
+
+  .abdus-last{
+    text-align:center;
+    font-size:13px;
+  }
+
+  /* kedip warna text terminal title */
+  .glowA{color:#ff2bd6; animation:glowShift 1.1s infinite}
+  .glowB{color:#00f5ff; animation:glowShift 1.1s infinite .15s}
+  .glowC{color:#00ff88; animation:glowShift 1.1s infinite .3s}
+  .glowD{color:#ffd400; animation:glowShift 1.1s infinite .45s}
+  @keyframes glowShift{
+    0%,100%{filter:drop-shadow(0 0 10px rgba(255,255,255,.2)); opacity:1}
+    50%{filter:drop-shadow(0 0 20px rgba(0,245,255,.35)); opacity:.7}
+  }
+
+  @media (max-width:720px){
+    .abdus-grid{grid-template-columns:1fr}
+    .abdus-term-badge{display:none}
+  }
+</style>
+<!-- ===================== LOGIN SECTION (NEON DARK) ===================== -->
+<section class="abdus-login-wrap" id="login">
+  <div class="abdus-login-card">
+    <div class="abdus-login-head">
+      <div class="abdus-login-badge">SECURE • LOGIN</div>
+      <h2 class="abdus-login-title">Login Panel</h2>
+      <p class="abdus-login-sub">
+        Contoh halaman login keren untuk Admin / Client / Dashboard 🚀
+      </p>
+    </div>
+
+    <form class="abdus-login-form" onsubmit="return abdusLogin(event)">
+      <div class="abdus-login-row">
+        <label class="abdus-label">Email / Username</label>
+        <div class="abdus-input-wrap">
+          <i class="fa-solid fa-user abdus-ic"></i>
+          <input class="abdus-input" id="abdusUser" type="text" placeholder="admin@abdussalam.store" required>
+        </div>
+      </div>
+
+      <div class="abdus-login-row">
+        <label class="abdus-label">Password</label>
+        <div class="abdus-input-wrap">
+          <i class="fa-solid fa-lock abdus-ic"></i>
+          <input class="abdus-input" id="abdusPass" type="password" placeholder="••••••••" required>
+          <button type="button" class="abdus-eye" onclick="abdusTogglePass()">
+            <i class="fa-solid fa-eye" id="abdusEyeIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="abdus-login-actions">
+        <button class="abdus-login-btn" type="submit">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Login Sekarang
+        </button>
+
+        <a class="abdus-login-link" href="#terminal" onclick="abdusSparkClick(event)">
+          <i class="fa-solid fa-terminal"></i>
+          Lihat Terminal
+        </a>
+      </div>
+
+      <div class="abdus-login-extra">
+        <div class="abdus-remember">
+          <input type="checkbox" id="rememberMe" checked>
+          <label for="rememberMe">Remember me</label>
+        </div>
+
+        <a class="abdus-forgot" href="mailto:admin@abdussalam.store" onclick="abdusSparkClick(event)">
+          Lupa password?
+        </a>
+      </div>
+
+      <div class="abdus-login-note">
+        <span class="dot"></span>
+        <span>Demo login ini hanya contoh tampilan (belum connect database)</span>
+      </div>
+    </form>
+
+    <div class="abdus-login-footer">
+      <div class="abdus-mini">
+        <span class="tag">Admin</span>
+        <span class="tag">Client</span>
+        <span class="tag">Dashboard</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Supabase</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .abdus-login-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 14px 40px;
+  }
+
+  .abdus-login-card{
+    width:min(92vw, 520px);
+    margin:0 auto;
+    border-radius:24px;
+    background:linear-gradient(180deg, rgba(10,10,16,.95), rgba(0,0,0,.92));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 30px 120px rgba(0,0,0,.75);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .abdus-login-card:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#00f5ff,#ff2bd6,#00ff88,#ffd400,#00f5ff);
+    filter:blur(26px);
+    opacity:.16;
+    animation:abdLoginSpin 6s linear infinite;
+  }
+  @keyframes abdLoginSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .abdus-login-card > *{position:relative; z-index:2}
+
+  .abdus-login-head{
+    padding:22px 18px 10px;
+    text-align:center;
+  }
+
+  .abdus-login-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 12px;
+    border-radius:999px;
+    font-weight:900;
+    font-size:11px;
+    color:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .abdus-login-title{
+    margin-top:12px;
+    font-size:28px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#00f5ff,#ff2bd6,#00ff88,#ffd400);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 20px rgba(0,245,255,.15);
+  }
+
+  .abdus-login-sub{
+    margin-top:8px;
+    color:rgba(255,255,255,.70);
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  .abdus-login-form{
+    padding:12px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .abdus-login-row{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .abdus-label{
+    font-size:12px;
+    font-weight:900;
+    color:rgba(255,255,255,.82);
+  }
+
+  .abdus-input-wrap{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 12px;
+    border-radius:16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.35);
+  }
+
+  .abdus-ic{
+    color:rgba(0,245,255,.9);
+    text-shadow:0 0 14px rgba(0,245,255,.25);
+    font-size:14px;
+    width:18px;
+    text-align:center;
+  }
+
+  .abdus-input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:rgba(255,255,255,.92);
+    font-size:13px;
+  }
+
+  .abdus-input::placeholder{
+    color:rgba(255,255,255,.35);
+  }
+
+  .abdus-eye{
+    border:none;
+    background:transparent;
+    color:rgba(255,255,255,.75);
+    cursor:pointer;
+    padding:4px 6px;
+    border-radius:10px;
+    transition:.2s ease;
+  }
+  .abdus-eye:hover{
+    background:rgba(255,255,255,.06);
+  }
+
+  .abdus-login-actions{
+    display:flex;
+    gap:10px;
+    margin-top:6px;
+  }
+
+  .abdus-login-btn{
+    flex:1;
+    border:none;
+    cursor:pointer;
+    border-radius:18px;
+    padding:13px 14px;
+    font-weight:1000;
+    font-size:13px;
+    color:#071018;
+    background:linear-gradient(90deg,#00f5ff,#ff2bd6,#00ff88,#ffd400);
+    box-shadow:0 20px 60px rgba(0,245,255,.12);
+    transition:.2s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .abdus-login-btn:hover{transform:translateY(-1px)}
+  .abdus-login-btn:active{transform:scale(.98)}
+
+  .abdus-login-btn:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.18), rgba(255,255,255,0));
+    transform:translateX(-120%);
+    animation:abdLoginSweep 2.2s linear infinite;
+  }
+  @keyframes abdLoginSweep{
+    0%{transform:translateX(-120%)}
+    100%{transform:translateX(120%)}
+  }
+
+  .abdus-login-link{
+    width:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    border-radius:18px;
+    padding:13px 12px;
+    font-weight:1000;
+    font-size:13px;
+    color:rgba(255,255,255,.90);
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    transition:.2s ease;
+  }
+  .abdus-login-link:hover{
+    transform:translateY(-1px);
+    background:rgba(255,255,255,.08);
+  }
+
+  .abdus-login-extra{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:2px;
+    font-size:12px;
+    color:rgba(255,255,255,.70);
+  }
+
+  .abdus-remember{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .abdus-forgot{
+    color:#00f5ff;
+    text-decoration:none;
+    font-weight:900;
+  }
+  .abdus-forgot:hover{text-decoration:underline}
+
+  .abdus-login-note{
+    margin-top:6px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+    color:rgba(255,255,255,.72);
+    font-size:12px;
+  }
+
+  .abdus-login-note .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:#00ff88;
+    box-shadow:0 0 16px rgba(0,255,136,.35);
+    animation:abdDotBlink 1s infinite;
+  }
+  @keyframes abdDotBlink{
+    0%,100%{opacity:1}
+    50%{opacity:.35}
+  }
+
+  .abdus-login-footer{
+    padding:0 18px 18px;
+  }
+
+  .abdus-mini{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+  }
+
+  .tag{
+    font-size:11px;
+    font-weight:1000;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    color:rgba(255,255,255,.80);
+  }
+
+  @media(max-width:520px){
+    .abdus-login-card{width:min(92vw, 420px)}
+    .abdus-login-actions{flex-direction:column}
+    .abdus-login-link{width:100%}
+  }
+</style>
+
+<script>
+  function abdusTogglePass(){
+    const pass = document.getElementById("abdusPass");
+    const icon = document.getElementById("abdusEyeIcon");
+    if(pass.type === "password"){
+      pass.type = "text";
+      icon.className = "fa-solid fa-eye-slash";
+    }else{
+      pass.type = "password";
+      icon.className = "fa-solid fa-eye";
+    }
+  }
+
+  function abdusLogin(e){
+    e.preventDefault();
+
+    const u = document.getElementById("abdusUser").value.trim();
+    const p = document.getElementById("abdusPass").value.trim();
+
+    // efek bintang meledak kalau kamu sudah pakai function boomSpark
+    if(typeof boomSpark === "function"){
+      boomSpark(window.innerWidth/2, window.innerHeight/2);
+    }
+
+    alert("🔥 Login sukses (demo)!\n\nUser: " + u + "\nPassword: " + (p ? "********" : "-") + "\n\nNext: sambungkan ke Firebase/Supabase ya 😈");
+    return false;
+  }
+
+  // kecil helper biar klik link juga ada spark
+  function abdusSparkClick(e){
+    if(typeof boomSpark === "function"){
+      boomSpark(e.clientX, e.clientY);
+    }
+  }
+</script>
+<!-- ===================== BNI STYLE DEMO (BODY SECTION) ===================== -->
+<section class="abdus-bni-demo" id="bank-demo">
+  <div class="abdus-bni-topbar">
+    <div class="abdus-bni-logo">
+      <span class="bni-box"></span>
+      <span class="bni-text">BNI</span>
+    </div>
+    <div class="abdus-bni-actions">
+      <button class="abdus-bni-icbtn" onclick="abdusOpenHelp('Search')">🔍</button>
+      <button class="abdus-bni-icbtn" onclick="abdusOpenHelp('Language')">ID</button>
+      <button class="abdus-bni-icbtn" onclick="abdusOpenHelp('Menu')">☰</button>
+    </div>
+  </div>
+
+  <div class="abdus-bni-cardwrap">
+    <div class="abdus-bni-card">
+      <div class="abdus-bni-card-head">
+        <div class="abdus-bni-card-brand">
+          <span class="bni-mini"></span> <b>BNI</b>
+        </div>
+        <div class="abdus-bni-chip"></div>
+      </div>
+
+      <div class="abdus-bni-card-num">•••• •••• •••• ••••</div>
+      <div class="abdus-bni-card-foot">
+        <div class="abdus-bni-valid">
+          <span>Valid</span>
+          <span>Thru : MM/YY</span>
+        </div>
+        <div class="abdus-bni-debit">DEBIT</div>
+      </div>
+    </div>
+
+    <div class="abdus-bni-form">
+      <div class="abdus-bni-input">
+        <input id="abdusCard16" maxlength="19" placeholder="No. Kartu 16 digit (DEMO)" inputmode="numeric">
+      </div>
+
+      <div class="abdus-bni-grid">
+        <div class="abdus-bni-input">
+          <input id="abdusExp" maxlength="5" placeholder="MM/YY" inputmode="numeric">
+        </div>
+        <div class="abdus-bni-input">
+          <input id="abdusCvv" maxlength="3" placeholder="CVV 3 digit" inputmode="numeric">
+        </div>
+      </div>
+
+      <button class="abdus-bni-confirm" onclick="abdusConfirmBankDemo(event)">
+        Konfirmasi
+      </button>
+
+      <p class="abdus-bni-safe">
+        ⚠️ Ini hanya <b>contoh UI</b> untuk portfolio (tidak menyimpan data).
+      </p>
+    </div>
+  </div>
+
+  <div class="abdus-bni-boxbtn">
+    <button class="abdus-bni-bigbtn" onclick="abdusBankAction(event,'Blokir Kartu Kredit/Debit')">
+      Blokir Kartu Kredit/Debit
+    </button>
+    <button class="abdus-bni-bigbtn" onclick="abdusBankAction(event,'Batalkan OTP')">
+      Batalkan OTP
+    </button>
+    <button class="abdus-bni-bigbtn" onclick="abdusBankAction(event,'Lapor Ke Bank Lain')">
+      Lapor Ke Bank Lain
+    </button>
+  </div>
+
+  <div class="abdus-bni-footer">
+    <div class="abdus-bni-footline">Bisa makin mudah transaksi apa aja dalam satu aplikasi</div>
+    <div class="abdus-bni-footbrand">
+      <span class="bni-foot">BUMN</span>
+      <span class="bni-foot">BNI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POPUP ACTION (DEMO) ===================== -->
+<div class="abdus-bank-modal" id="abdusBankModal">
+  <div class="abdus-bank-bg" onclick="abdusCloseBankModal()"></div>
+  <div class="abdus-bank-card">
+    <button class="abdus-bank-x" onclick="abdusCloseBankModal()">✕</button>
+    <div class="abdus-bank-title" id="abdusBankTitle">Action</div>
+    <div class="abdus-bank-desc" id="abdusBankDesc">
+      Ini popup demo untuk portfolio Abdussalam 😈🔥
+    </div>
+
+    <div class="abdus-bank-actions">
+      <a class="abdus-bank-btn abdus-bank-wa" target="_blank"
+         href="https://wa.me/6283155620630?text=Halo%20Abdussalam%20saya%20mau%20order%20UI%20Bank%20Demo%20keren%20ini%20🔥">
+        💬 Order via WhatsApp
+      </a>
+
+      <a class="abdus-bank-btn abdus-bank-mail"
+         href="mailto:admin@abdussalam.store?subject=Order%20UI%20Bank%20Demo&body=Halo%20Abdussalam,%0ASaya%20mau%20order%20UI%20Bank%20Demo%20yang%20keren%20ini%20🔥">
+        ✉️ Order via Email
+      </a>
+
+      <button class="abdus-bank-btn abdus-bank-close" onclick="abdusCloseBankModal()">
+        Oke, Tutup
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ====== BANK DEMO SECTION ====== */
+  .abdus-bni-demo{
+    max-width:980px;
+    margin:0 auto;
+    padding:24px 12px 40px;
+  }
+
+  .abdus-bni-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 12px;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 16px 60px rgba(0,0,0,.35);
+  }
+
+  .abdus-bni-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:1000;
+    font-size:20px;
+    color:#fff;
+  }
+
+  .bni-box{
+    width:26px;height:26px;border-radius:8px;
+    background:linear-gradient(90deg,#ff7a00,#ffb400);
+    box-shadow:0 0 18px rgba(255,150,0,.35);
+  }
+
+  .bni-text{
+    font-weight:1000;
+    letter-spacing:.5px;
+  }
+
+  .abdus-bni-actions{
+    display:flex;
+    gap:10px;
+  }
+
+  .abdus-bni-icbtn{
+    border:none;
+    cursor:pointer;
+    width:44px;height:44px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    color:#fff;
+    font-weight:1000;
+    transition:.18s ease;
+  }
+  .abdus-bni-icbtn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08)}
+
+  /* ====== CARD + FORM ====== */
+  .abdus-bni-cardwrap{
+    margin-top:16px;
+    display:grid;
+    gap:14px;
+    justify-content:center;
+  }
+
+  .abdus-bni-card{
+    width:min(92vw, 420px);
+    border-radius:22px;
+    padding:16px;
+    background:
+      radial-gradient(circle at top left, rgba(255,180,0,.18), transparent 55%),
+      radial-gradient(circle at bottom right, rgba(255,0,76,.12), transparent 55%),
+      linear-gradient(180deg, rgba(0,0,0,.78), rgba(0,0,0,.92));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 22px 80px rgba(0,0,0,.55);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .abdus-bni-card:after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:conic-gradient(from 0deg,#ff7a00,#ff2bd6,#00f5ff,#00ff88,#ff7a00);
+    filter:blur(22px);
+    opacity:.12;
+    animation:abdSpinBank 7s linear infinite;
+  }
+  @keyframes abdSpinBank{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .abdus-bni-card > *{position:relative; z-index:2}
+
+  .abdus-bni-card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .abdus-bni-card-brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:1000;
+  }
+
+  .bni-mini{
+    width:14px;height:14px;border-radius:4px;
+    background:linear-gradient(90deg,#ff7a00,#ffb400);
+  }
+
+  .abdus-bni-chip{
+    width:52px;height:38px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.05));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 22px rgba(255,255,255,.08);
+  }
+
+  .abdus-bni-card-num{
+    margin-top:22px;
+    font-size:18px;
+    letter-spacing:3px;
+    opacity:.95;
+  }
+
+  .abdus-bni-card-foot{
+    margin-top:16px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+  }
+
+  .abdus-bni-valid{
+    font-size:12px;
+    opacity:.8;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+
+  .abdus-bni-debit{
+    font-weight:1000;
+    letter-spacing:3px;
+    opacity:.9;
+  }
+
+  .abdus-bni-form{
+    width:min(92vw, 420px);
+    border-radius:22px;
+    padding:16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+  }
+
+  .abdus-bni-input{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:16px;
+    padding:12px 12px;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.35);
+  }
+
+  .abdus-bni-input input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#fff;
+    font-size:13px;
+  }
+
+  .abdus-bni-input input::placeholder{
+    color:rgba(255,255,255,.45);
+  }
+
+  .abdus-bni-grid{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .abdus-bni-confirm{
+    margin-top:14px;
+    width:100%;
+    border:none;
+    cursor:pointer;
+    border-radius:18px;
+    padding:14px 14px;
+    font-weight:1000;
+    font-size:14px;
+    background:linear-gradient(90deg,#ff7a00,#ffb400);
+    color:#1b0d00;
+    box-shadow:0 18px 55px rgba(255,150,0,.25);
+    transition:.18s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .abdus-bni-confirm:hover{transform:translateY(-1px)}
+  .abdus-bni-confirm:active{transform:scale(.98)}
+
+  .abdus-bni-confirm:after{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-60%;
+    width:60%;
+    height:180%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    transform:skewX(-20deg);
+    animation:abdusShine 1.8s linear infinite;
+  }
+
+  .abdus-bni-safe{
+    margin-top:10px;
+    font-size:12px;
+    color:rgba(255,255,255,.65);
+    line-height:1.4;
+  }
+
+  /* ====== 3 BIG BUTTONS ====== */
+  .abdus-bni-boxbtn{
+    width:min(92vw, 520px);
+    margin:18px auto 0;
+    border-radius:22px;
+    padding:14px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .abdus-bni-bigbtn{
+    border:none;
+    cursor:pointer;
+    border-radius:18px;
+    padding:16px 14px;
+    font-weight:1000;
+    font-size:14px;
+    background:linear-gradient(90deg,#ff7a00,#ffb400);
+    color:#1b0d00;
+    box-shadow:0 18px 55px rgba(255,150,0,.22);
+    transition:.18s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .abdus-bni-bigbtn:hover{transform:translateY(-2px)}
+  .abdus-bni-bigbtn:active{transform:scale(.98)}
+  .abdus-bni-bigbtn:after{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-60%;
+    width:60%;
+    height:180%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    transform:skewX(-20deg);
+    animation:abdusShine 1.6s linear infinite;
+  }
+
+  /* ====== FOOTER ====== */
+  .abdus-bni-footer{
+    margin-top:18px;
+    text-align:center;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+  }
+
+  .abdus-bni-footbrand{
+    margin-top:10px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .bni-foot{
+    padding:8px 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    font-weight:1000;
+  }
+
+  /* ====== MODAL ====== */
+  .abdus-bank-modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    z-index:99999;
+  }
+  .abdus-bank-modal.show{display:block}
+
+  .abdus-bank-bg{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+  }
+
+  .abdus-bank-card{
+    position:relative;
+    width:min(92vw, 420px);
+    margin:18vh auto;
+    border-radius:22px;
+    padding:18px;
+    background:linear-gradient(180deg, rgba(10,10,10,.96), rgba(0,0,0,.96));
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 90px rgba(0,0,0,.75);
+    overflow:hidden;
+    animation:abdusPop .18s ease-out;
+  }
+
+  .abdus-bank-card:after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:24px;
+    background:conic-gradient(from 0deg,#ff7a00,#ff2bd6,#00f5ff,#00ff88,#ff7a00);
+    filter:blur(18px);
+    opacity:.35;
+    animation:abdSpinBank 3.2s linear infinite;
+    z-index:0;
+  }
+  .abdus-bank-card > *{position:relative; z-index:2}
+
+  .abdus-bank-x{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:42px;height:42px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.04);
+    color:#ff3b3b;
+    font-size:18px;
+    cursor:pointer;
+  }
+
+  .abdus-bank-title{
+    font-weight:1000;
+    font-size:18px;
+    color:#ffb400;
+    text-shadow:0 0 18px rgba(255,180,0,.25);
+  }
+
+  .abdus-bank-desc{
+    margin-top:8px;
+    color:rgba(255,255,255,.70);
+    font-size:13px;
+    line-height:1.45;
+  }
+
+  .abdus-bank-actions{
+    margin-top:14px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .abdus-bank-btn{
+    border:none;
+    border-radius:18px;
+    padding:14px 14px;
+    font-weight:1000;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    transition:.18s ease;
+  }
+  .abdus-bank-btn:hover{transform:translateY(-1px)}
+  .abdus-bank-btn:active{transform:scale(.98)}
+
+  .abdus-bank-wa{
+    background:linear-gradient(90deg,#00ff88,#00c853);
+    color:#04110b;
+  }
+  .abdus-bank-mail{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    color:rgba(255,255,255,.92);
+  }
+  .abdus-bank-close{
+    background:linear-gradient(90deg,#00f5ff,#6ee7ff);
+    color:#041018;
+  }
+</style>
+
+<script>
+  // Format input 16 digit (DEMO) -> 1234 5678 9012 3456
+  const card16 = document.getElementById("abdusCard16");
+  const exp = document.getElementById("abdusExp");
+  const cvv = document.getElementById("abdusCvv");
+
+  if(card16){
+    card16.addEventListener("input", ()=>{
+      let v = card16.value.replace(/\D/g,'').slice(0,16);
+      v = v.replace(/(.{4})/g,'$1 ').trim();
+      card16.value = v;
+    });
+  }
+
+  if(exp){
+    exp.addEventListener("input", ()=>{
+      let v = exp.value.replace(/\D/g,'').slice(0,4);
+      if(v.length >= 3) v = v.slice(0,2) + "/" + v.slice(2);
+      exp.value = v;
+    });
+  }
+
+  if(cvv){
+    cvv.addEventListener("input", ()=>{
+      cvv.value = cvv.value.replace(/\D/g,'').slice(0,3);
+    });
+  }
+
+  const bankModal = document.getElementById("abdusBankModal");
+  const bankTitle = document.getElementById("abdusBankTitle");
+  const bankDesc = document.getElementById("abdusBankDesc");
+
+  function abdusOpenBankModal(title, desc){
+    bankTitle.textContent = title;
+    bankDesc.textContent = desc;
+    bankModal.classList.add("show");
+  }
+
+  function abdusCloseBankModal(){
+    bankModal.classList.remove("show");
+  }
+
+  function abdusConfirmBankDemo(e){
+    if(typeof boomSpark === "function") boomSpark(e.clientX, e.clientY);
+
+    abdusOpenBankModal(
+      "Konfirmasi (DEMO)",
+      "UI ini contoh tampilan konfirmasi kartu untuk portfolio. Data tidak disimpan. Klik tombol order untuk pesan versi asli 😈🔥"
+    );
+  }
+
+  function abdusBankAction(e, action){
+    if(typeof boomSpark === "function") boomSpark(e.clientX, e.clientY);
+
+    abdusOpenBankModal(
+      action,
+      "Fitur ini demo. Abdussalam bisa buat versi asli (Flutter / Web / Firebase / Supabase) + admin panel + keamanan 😈🔥"
+    );
+  }
+
+  function abdusOpenHelp(name){
+    abdusOpenBankModal(
+      "Menu: " + name,
+      "Ini demo UI bank-style. Kalau mau versi asli + login + dashboard admin, langsung order ya 😈🔥"
+    );
+  }
+
+  document.addEventListener("keydown",(e)=>{
+    if(e.key === "Escape") abdusCloseBankModal();
+  });
+</script></body>
+<!-- ===================== ABDUSSALAM ADMIN PANEL (BODY ONLY) ===================== -->
+<div class="abdus-admin">
+  <!-- SIDEBAR -->
+  <aside class="abdus-side">
+    <div class="abdus-brand">
+      <div class="abdus-logo"></div>
+      <div>
+        <div class="abdus-brand-name">Abdussalam</div>
+        <div class="abdus-brand-sub">Neon Admin Panel</div>
+      </div>
+    </div>
+
+    <div class="abdus-nav">
+      <div class="abdus-nav-title">MENU</div>
+
+      <button class="abdus-nav-item active" onclick="abdusNav('Dashboard', event)">
+        <span>🏠</span> Dashboard
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Analysis', event)">
+        <span>📊</span> Analysis
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('eCommerce', event)">
+        <span>🛒</span> eCommerce
+      </button>
+
+      <div class="abdus-nav-title">UI ELEMENTS</div>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Cards', event)">
+        <span>🧩</span> Cards
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Components', event)">
+        <span>🧱</span> Components
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Icons', event)">
+        <span>✨</span> Icons
+      </button>
+
+      <div class="abdus-nav-title">PAGES</div>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Authentication', event)">
+        <span>🔐</span> Authentication
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('User Profile', event)">
+        <span>👤</span> User Profile
+      </button>
+
+      <button class="abdus-nav-item" onclick="abdusNav('Timeline', event)">
+        <span>🕒</span> Timeline
+      </button>
+
+      <div class="abdus-side-footer">
+        <button class="abdus-neon-btn" onclick="abdusOpenAdminModal(event,'Order Project','Mau bikin Admin Panel asli? Abdussalam siap bikin versi Firebase/Supabase + dashboard realtime + keamanan 🔥')">
+          ⚡ Order Panel
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="abdus-main">
+    <!-- TOPBAR -->
+    <header class="abdus-top">
+      <button class="abdus-top-icon" onclick="abdusToast(event,'Menu clicked 😈')">☰</button>
+
+      <div class="abdus-search">
+        <span class="abdus-search-ic">🔎</span>
+        <input id="abdusSearch" placeholder="Search..." />
+      </div>
+
+      <div class="abdus-top-right">
+        <button class="abdus-top-icon" onclick="abdusToast(event,'Notifications 🔔')">🔔</button>
+        <button class="abdus-top-icon" onclick="abdusToast(event,'Cart 🛒')">🛒</button>
+        <button class="abdus-top-icon" onclick="abdusToast(event,'Profile 👤')">👤</button>
+
+        <button class="abdus-settings" onclick="abdusOpenAdminModal(event,'Settings','Ini demo settings panel. Kalau mau versi full, order aja 😈🔥')">
+          Settings ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <section class="abdus-wrap">
+      <div class="abdus-title">
+        <h2>Dashboard</h2>
+        <p>Admin Panel neon dark by <b>Abdussalam</b> 🔥</p>
+      </div>
+
+      <!-- HERO + STATS -->
+      <div class="abdus-grid-hero">
+        <div class="abdus-card abdus-hero">
+          <div class="abdus-hero-left">
+            <div class="abdus-hero-title">Congratulations Abdussalam 🎉</div>
+            <div class="abdus-hero-sub">You are the best seller of this month</div>
+
+            <div class="abdus-hero-money">$168.5K</div>
+            <div class="abdus-hero-small">58% of sales target</div>
+
+            <button class="abdus-pill" onclick="abdusOpenAdminModal(event,'View Details','Ini demo panel detail. Bisa dibuat realtime pakai Firebase/Supabase 🔥')">
+              View Details
+            </button>
+          </div>
+
+          <div class="abdus-hero-art">
+            <div class="gift">
+              <div class="gift-top"></div>
+              <div class="gift-body"></div>
+              <div class="gift-bow"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="abdus-card abdus-stat" onclick="abdusStatClick(event,'Total Orders','248k orders dalam demo dashboard 😈')">
+          <div class="abdus-stat-ic">🛒</div>
+          <div class="abdus-stat-val">248k</div>
+          <div class="abdus-stat-lbl">Total Orders</div>
+          <div class="abdus-stat-up">+24%</div>
+          <div class="abdus-mini-wave"></div>
+        </div>
+
+        <div class="abdus-card abdus-stat" onclick="abdusStatClick(event,'Total Sales','$47.6k sales demo panel 😈')">
+          <div class="abdus-stat-ic">💰</div>
+          <div class="abdus-stat-val">$47.6k</div>
+          <div class="abdus-stat-lbl">Total Sales</div>
+          <div class="abdus-stat-up green">+14%</div>
+          <div class="abdus-mini-wave wave2"></div>
+        </div>
+
+        <div class="abdus-card abdus-stat" onclick="abdusStatClick(event,'Total Visits','189k visits demo panel 😈')">
+          <div class="abdus-stat-ic">👁️</div>
+          <div class="abdus-stat-val">189k</div>
+          <div class="abdus-stat-lbl">Total Visits</div>
+          <div class="abdus-stat-up red">-35%</div>
+          <div class="abdus-mini-wave wave3"></div>
+        </div>
+
+        <div class="abdus-card abdus-stat" onclick="abdusStatClick(event,'Bounce Rate','24.6% bounce rate demo 😈')">
+          <div class="abdus-stat-ic">📈</div>
+          <div class="abdus-stat-val">24.6%</div>
+          <div class="abdus-stat-lbl">Bounce Rate</div>
+          <div class="abdus-stat-up yellow">+18%</div>
+          <div class="abdus-bars">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARTS -->
+      <div class="abdus-grid-charts">
+        <div class="abdus-card abdus-donut">
+          <div class="abdus-card-head">
+            <div>
+              <div class="abdus-card-title">Order Status</div>
+              <div class="abdus-card-sub">Total Sales</div>
+            </div>
+            <button class="abdus-dot" onclick="abdusToast(event,'More menu...')">⋮</button>
+          </div>
+
+          <div class="abdus-ring">
+            <div class="abdus-ring-center">
+              <div class="abdus-ring-big" id="abdusRingPercent">68%</div>
+              <div class="abdus-ring-small">Total Sales</div>
+            </div>
+          </div>
+
+          <div class="abdus-legend">
+            <div><span class="l1"></span> Sales <b>68%</b></div>
+            <div><span class="l2"></span> Product <b>25%</b></div>
+            <div><span class="l3"></span> Income <b>14%</b></div>
+          </div>
+        </div>
+
+        <div class="abdus-card abdus-chart">
+          <div class="abdus-card-head">
+            <div>
+              <div class="abdus-card-title">Sales & Views</div>
+              <div class="abdus-card-sub">Monthly performance</div>
+            </div>
+            <button class="abdus-dot" onclick="abdusToast(event,'Chart options')">⋮</button>
+          </div>
+
+          <div class="abdus-bar-chart" id="abdusBars">
+            <!-- bars generated by JS -->
+          </div>
+
+          <div class="abdus-bottom-metrics">
+            <div class="abdus-metric" onclick="abdusToast(event,'Monthly clicked')">
+              <div class="abdus-metric-title">Monthly</div>
+              <div class="abdus-metric-val">65,127</div>
+              <div class="abdus-metric-sub">+16.5% • 55.21 USD</div>
+            </div>
+
+            <div class="abdus-metric" onclick="abdusToast(event,'Yearly clicked')">
+              <div class="abdus-metric-title">Yearly</div>
+              <div class="abdus-metric-val">984,246</div>
+              <div class="abdus-metric-sub">+24.9% • 267.35 USD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===================== MODAL ADMIN ===================== -->
+<div class="abdus-admin-modal" id="abdusAdminModal">
+  <div class="abdus-admin-bg" onclick="abdusCloseAdminModal()"></div>
+
+  <div class="abdus-admin-pop">
+    <button class="abdus-admin-x" onclick="abdusCloseAdminModal()">✕</button>
+    <div class="abdus-admin-pop-title" id="abdusAdminTitle">Title</div>
+    <div class="abdus-admin-pop-desc" id="abdusAdminDesc">Desc</div>
+
+    <div class="abdus-admin-pop-actions">
+      <a class="abdus-admin-pop-btn wa" target="_blank"
+         href="https://wa.me/6283155620630?text=Halo%20Abdussalam%20saya%20mau%20order%20Admin%20Panel%20neon%20dark%20keren%20🔥">
+        💬 Order WhatsApp
+      </a>
+
+      <a class="abdus-admin-pop-btn mail"
+         href="mailto:admin@abdussalam.store?subject=Order%20Admin%20Panel%20Neon&body=Halo%20Abdussalam,%0ASaya%20mau%20order%20Admin%20Panel%20Neon%20Dark%20keren%20🔥">
+        ✉️ Order Email
+      </a>
+
+      <button class="abdus-admin-pop-btn close" onclick="abdusCloseAdminModal()">
+        Oke Mantap 🔥
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOAST ===================== -->
+<div class="abdus-toast" id="abdusToast">Saved!</div>
+
+<style>
+  /* ====== LAYOUT ====== */
+  .abdus-admin{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:0;
+  }
+
+  @media (max-width: 980px){
+    .abdus-admin{grid-template-columns:1fr}
+    .abdus-side{position:sticky; top:0; z-index:10}
+  }
+
+  /* ====== SIDEBAR ====== */
+  .abdus-side{
+    background:rgba(255,255,255,.02);
+    border-right:1px solid rgba(255,255,255,.06);
+    padding:18px 14px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow:auto;
+  }
+
+  .abdus-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 10px 16px;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 18px 70px rgba(0,0,0,.25);
+  }
+
+  .abdus-logo{
+    width:44px;height:44px;border-radius:16px;
+    background:conic-gradient(from 0deg,#ff004c,#ff2bd6,#00f5ff,#00ff88,#ff004c);
+    box-shadow:0 0 26px rgba(0,245,255,.18);
+    animation:abdSpin 6s linear infinite;
+  }
+  @keyframes abdSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+  .abdus-brand-name{
+    font-weight:1000;
+    font-size:16px;
+    color:#fff;
+  }
+  .abdus-brand-sub{
+    font-size:12px;
+    color:rgba(255,255,255,.55);
+    margin-top:2px;
+  }
+
+  .abdus-nav{margin-top:14px}
+  .abdus-nav-title{
+    font-size:11px;
+    letter-spacing:1.4px;
+    color:rgba(255,255,255,.45);
+    margin:14px 10px 8px;
+  }
+
+  .abdus-nav-item{
+    width:100%;
+    text-align:left;
+    border:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 12px;
+    border-radius:16px;
+    background:transparent;
+    color:rgba(255,255,255,.82);
+    font-weight:800;
+    transition:.18s ease;
+  }
+  .abdus-nav-item:hover{
+    background:rgba(255,255,255,.05);
+    transform:translateX(2px);
+  }
+  .abdus-nav-item.active{
+    background:linear-gradient(90deg, rgba(255,0,76,.20), rgba(0,245,255,.10));
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 18px 60px rgba(0,0,0,.25);
+  }
+
+  .abdus-side-footer{
+    margin-top:16px;
+    padding:10px;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+  }
+
+  .abdus-neon-btn{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    border-radius:999px;
+    padding:14px 14px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#ff004c,#ff2bd6,#00f5ff,#00ff88);
+    color:#07101e;
+    box-shadow:0 18px 70px rgba(0,0,0,.45);
+    animation:abdPulse 1.05s infinite;
+  }
+  @keyframes abdPulse{
+    0%,100%{transform:translateY(0); filter:drop-shadow(0 0 0 rgba(0,245,255,0))}
+    50%{transform:translateY(-2px); filter:drop-shadow(0 0 18px rgba(0,245,255,.25))}
+  }
+
+  /* ====== MAIN ====== */
+  .abdus-main{
+    padding:18px;
+  }
+
+  .abdus-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    justify-content:space-between;
+    padding:12px 12px;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 18px 70px rgba(0,0,0,.25);
+  }
+
+  .abdus-top-icon{
+    width:44px;height:44px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    cursor:pointer;
+    transition:.18s ease;
+  }
+  .abdus-top-icon:hover{transform:translateY(-1px); background:rgba(255,255,255,.06)}
+
+  .abdus-search{
+    flex:1;
+    max-width:520px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .abdus-search-ic{opacity:.75}
+  .abdus-search input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#fff;
+    font-weight:700;
+  }
+  .abdus-search input::placeholder{color:rgba(255,255,255,.45)}
+
+  .abdus-top-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .abdus-settings{
+    border:none;
+    cursor:pointer;
+    border-radius:14px;
+    padding:12px 14px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#2b8cff,#0066ff);
+    color:#fff;
+    box-shadow:0 18px 70px rgba(0,102,255,.18);
+    transition:.18s ease;
+  }
+  .abdus-settings:hover{transform:translateY(-1px)}
+
+  /* ====== CONTENT ====== */
+  .abdus-wrap{margin-top:16px}
+  .abdus-title h2{
+    margin:0;
+    font-size:26px;
+    color:#fff;
+    letter-spacing:.3px;
+  }
+  .abdus-title p{
+    margin:6px 0 0;
+    color:rgba(255,255,255,.55);
+  }
+
+  .abdus-grid-hero{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap:14px;
+  }
+
+  @media (max-width: 1200px){
+    .abdus-grid-hero{grid-template-columns:1fr 1fr}
+  }
+
+  .abdus-grid-charts{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    gap:14px;
+  }
+  @media (max-width: 1200px){
+    .abdus-grid-charts{grid-template-columns:1fr}
+  }
+
+  .abdus-card{
+    border-radius:22px;
+    padding:16px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 18px 70px rgba(0,0,0,.28);
+    position:relative;
+    overflow:hidden;
+    transition:.18s ease;
+  }
+  .abdus-card:hover{transform:translateY(-2px)}
+
+  /* ====== HERO CARD ====== */
+  .abdus-hero{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    align-items:center;
+    min-height:170px;
+  }
+
+  .abdus-hero-title{
+    font-weight:1000;
+    font-size:18px;
+    color:#fff;
+  }
+  .abdus-hero-sub{
+    margin-top:4px;
+    color:rgba(255,255,255,.55);
+    font-size:13px;
+  }
+
+  .abdus-hero-money{
+    margin-top:10px;
+    font-size:28px;
+    font-weight:1000;
+    color:#fff;
+  }
+  .abdus-hero-small{
+    margin-top:2px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+  }
+
+  .abdus-pill{
+    margin-top:12px;
+    border:none;
+    cursor:pointer;
+    border-radius:999px;
+    padding:12px 14px;
+    font-weight:1000;
+    background:linear-gradient(90deg,#ff2bd6,#ff004c);
+    color:#fff;
+    box-shadow:0 18px 60px rgba(255,0,76,.18);
+  }
+
+  .abdus-hero-art{min-width:120px}
+  .gift{width:90px;height:90px; position:relative; margin-left:auto}
+  .gift-body{
+    position:absolute; inset:18px 10px 10px 10px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#ff2bd6,#ff004c);
+    box-shadow:0 0 28px rgba(255,0,76,.22);
+  }
+  .gift-top{
+    position:absolute; left:10px; right:10px; top:10px; height:20px;
+    border-radius:14px;
+    background:linear-gradient(90deg,#00f5ff,#00ff88);
+    box-shadow:0 0 28px rgba(0,245,255,.18);
+  }
+  .gift-bow{
+    position:absolute; left:50%; top:2px; width:36px; height:36px;
+    transform:translateX(-50%) rotate(12deg);
+    border-radius:50%;
+    background:conic-gradient(from 0deg,#ffb400,#ff2bd6,#00f5ff,#00ff88,#ffb400);
+    filter:blur(.2px);
+    opacity:.95;
+    animation:abdSpin 4.5s linear infinite;
+  }
+
+  /* ====== STAT CARDS ====== */
+  .abdus-stat{
+    min-height:170px;
+    cursor:pointer;
+  }
+  .abdus-stat-ic{
+    width:44px;height:44px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 18px 60px rgba(0,0,0,.25);
+  }
+  .abdus-stat-val{
+    margin-top:10px;
+    font-size:22px;
+    font-weight:1000;
+    color:#fff;
+  }
+  .abdus-stat-lbl{
+    margin-top:4px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+  }
+  .abdus-stat-up{
+    margin-top:10px;
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:1000;
+    font-size:12px;
+    color:#00ff88;
+    background:rgba(0,255,136,.10);
+    border:1px solid rgba(0,255,136,.18);
+  }
+  .abdus-stat-up.green{color:#00ff88}
+  .abdus-stat-up.red{color:#ff3b3b; background:rgba(255,59,59,.10); border-color:rgba(255,59,59,.18)}
+  .abdus-stat-up.yellow{color:#ffb400; background:rgba(255,180,0,.10); border-color:rgba(255,180,0,.18)}
+
+  .abdus-mini-wave{
+    margin-top:14px;
+    height:44px;
+    border-radius:16px;
+    background:
+      linear-gradient(180deg, rgba(0,245,255,.22), transparent),
+      radial-gradient(circle at 20% 50%, rgba(0,245,255,.25), transparent 55%),
+      radial-gradient(circle at 80% 50%, rgba(255,0,76,.20), transparent 55%);
+    opacity:.85;
+    animation:abdWave 2.4s ease-in-out infinite;
+  }
+  .wave2{
+    background:
+      linear-gradient(180deg, rgba(0,255,136,.20), transparent),
+      radial-gradient(circle at 25% 50%, rgba(0,255,136,.25), transparent 55%),
+      radial-gradient(circle at 75% 50%, rgba(255,180,0,.18), transparent 55%);
+  }
+  .wave3{
+    background:
+      linear-gradient(180deg, rgba(255,59,59,.18), transparent),
+      radial-gradient(circle at 25% 50%, rgba(255,59,59,.20), transparent 55%),
+      radial-gradient(circle at 75% 50%, rgba(0,245,255,.18), transparent 55%);
+  }
+  @keyframes abdWave{
+    0%,100%{transform:translateY(0); opacity:.75}
+    50%{transform:translateY(-3px); opacity:1}
+  }
+
+  .abdus-bars{
+    margin-top:14px;
+    height:44px;
+    display:flex;
+    gap:6px;
+    align-items:flex-end;
+  }
+  .abdus-bars span{
+    flex:1;
+    height:20%;
+    border-radius:12px;
+    background:linear-gradient(180deg,#ffb400,#ff7a00);
+    animation:abdBars 1.2s ease-in-out infinite;
+    box-shadow:0 0 18px rgba(255,180,0,.18);
+  }
+  .abdus-bars span:nth-child(2){animation-delay:.1s;height:35%}
+  .abdus-bars span:nth-child(3){animation-delay:.2s;height:55%}
+  .abdus-bars span:nth-child(4){animation-delay:.3s;height:28%}
+  .abdus-bars span:nth-child(5){animation-delay:.4s;height:70%}
+  .abdus-bars span:nth-child(6){animation-delay:.5s;height:42%}
+  @keyframes abdBars{
+    0%,100%{transform:translateY(0); filter:brightness(1)}
+    50%{transform:translateY(-4px); filter:brightness(1.25)}
+  }
+
+  /* ====== CHART HEAD ====== */
+  .abdus-card-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .abdus-card-title{
+    font-weight:1000;
+    color:#fff;
+    font-size:16px;
+  }
+  .abdus-card-sub{
+    margin-top:4px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+  }
+  .abdus-dot{
+    width:44px;height:44px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  /* ====== DONUT ====== */
+  .abdus-ring{
+    margin:16px auto 12px;
+    width:220px;height:220px;
+    border-radius:50%;
+    background:conic-gradient(#00ff88 0 68%, rgba(255,255,255,.08) 68% 100%);
+    display:grid;
+    place-items:center;
+    box-shadow:0 0 40px rgba(0,255,136,.12);
+    animation:abdGlowRing 2.4s ease-in-out infinite;
+  }
+  @keyframes abdGlowRing{
+    0%,100%{filter:drop-shadow(0 0 0 rgba(0,255,136,0))}
+    50%{filter:drop-shadow(0 0 20px rgba(0,255,136,.25))}
+  }
+  .abdus-ring-center{
+    width:160px;height:160px;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.08);
+    display:grid;
+    place-items:center;
+    text-align:center;
+  }
+  .abdus-ring-big{
+    fo
+<body>
+
+  <!-- ===================== -->
+  <!-- BACKGROUND FX / STARS -->
+  <!-- ===================== -->
+  <div class="abdus-bg-stars"></div>
+
+  <!-- ===================== -->
+  <!-- TERMINAL UBUNTU NEON   -->
+  <!-- ===================== -->
+  <section class="abdus-wrap">
+
+    <div class="terminal neon-terminal">
+      <div class="terminal-top">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">abdus@ubuntu:~</span>
+        <span class="terminal-tag">LIVE</span>
+      </div>
+
+      <div class="terminal-body">
+        <div class="line">
+          <span class="prompt">abdus</span><span class="at">@</span><span class="os">ubuntu</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span>
+          <span class="cmd glowText">whoami</span>
+        </div>
+        <div class="out glowTextRainbow">ABDUSSALAM — Flutter Developer • Firebase • Supabase • MySQL</div>
+
+        <div class="line">
+          <span class="prompt">abdus</span><span class="at">@</span><span class="os">ubuntu</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span>
+          <span class="cmd glowText">location</span>
+        </div>
+        <div class="out addressText">
+          📍 <b>Jl. Aengsareh, Takong, Sampang, Madura, Indonesia</b>
+        </div>
+
+        <div class="line">
+          <span class="prompt">abdus</span><span class="at">@</span><span class="os">ubuntu</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span>
+          <span class="cmd glowText">cat profile.txt</span>
+        </div>
+
+        <div class="out descBlock">
+          <div class="descTitle">🎬 HOLLYWOOD MODE: ON</div>
+          <div class="descText">
+            Halo! Aku <b>ABDUSSALAM</b> — seorang <b>Flutter Developer</b> yang fokus bikin aplikasi & website yang
+            <b>cepat, modern, responsive, neon clean</b>, dan siap dipakai untuk bisnis nyata.
+            Aku biasa handle project dari <b>UI/UX</b>, <b>Frontend</b>, <b>Backend</b>, sampai <b>Deploy</b>.
+            <br><br>
+            Aku siap bantu kamu bikin:
+            <b>App Android/iOS</b>, <b>Admin Panel</b>, <b>Website Portfolio</b>, <b>Landing Page</b>,
+            <b>Sistem Login</b>, <b>Dashboard</b>, <b>Realtime Chat</b>, <b>Payment/Order Form</b>,
+            sampai <b>Database & API</b> yang aman.
+            <br><br>
+            Targetku: <b>hasil keren + performa kenceng + tampilan premium</b> 🔥
+          </div>
+
+          <div class="skillGrid">
+            <div class="skillItem">⚡ Flutter</div>
+            <div class="skillItem">🔥 Firebase Auth</div>
+            <div class="skillItem">📦 Firestore</div>
+            <div class="skillItem">🛰 Realtime Database</div>
+            <div class="skillItem">🧠 Supabase</div>
+            <div class="skillItem">🗃 MySQL</div>
+            <div class="skillItem">🐘 phpMyAdmin</div>
+            <div class="skillItem">🛡 IT Security</div>
+            <div class="skillItem">🌐 REST API</div>
+            <div class="skillItem">🎨 UI/UX Neon</div>
+            <div class="skillItem">⚙️ Admin Panel</div>
+            <div class="skillItem">🚀 Deploy</div>
+          </div>
+        </div>
+
+        <div class="line">
+          <span class="prompt">abdus</span><span class="at">@</span><span class="os">ubuntu</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span>
+          <span class="cmd glowText">run --showcase</span>
+        </div>
+
+        <div class="out miniBadges">
+          <span class="badgeX">Flutter + Firebase</span>
+          <span class="badgeX">Supabase + Auth</span>
+          <span class="badgeX">Admin Panel</span>
+          <span class="badgeX">MySQL + phpMyAdmin</span>
+          <span class="badgeX">Security</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===================== -->
+    <!-- SHOWCASE CARDS         -->
+    <!-- ===================== -->
+    <div class="grid-3">
+      <div class="cardX">
+        <div class="cardTop">
+          <div class="iconBubble">💻</div>
+          <div>
+            <div class="cardTitle">Coding Showcase</div>
+            <div class="cardSub">Neon UI + Responsive + Fast</div>
+          </div>
+        </div>
+        <div class="codeBox">
+<pre><code>// Flutter + Firebase Auth
+final user = FirebaseAuth.instance.currentUser;
+if(user != null){
+  print("Login: ${user.email}");
+}</code></pre>
+        </div>
+        <button class="btnMini" onclick="openMiniPop('Coding Showcase', 'Ini contoh potongan kode Flutter + Firebase Auth. Aku bisa bikin sistem login, register, reset password, role admin/user, dan dashboard realtime 🔥')">
+          Lihat Detail
+        </button>
+      </div>
+
+      <div class="cardX">
+        <div class="cardTop">
+          <div class="iconBubble">📱</div>
+          <div>
+            <div class="cardTitle">Flutter + Firebase</div>
+            <div class="cardSub">Realtime + Cloud + Push</div>
+          </div>
+        </div>
+        <div class="imgFake flutterShot">
+          <div class="phoneTop"></div>
+          <div class="phoneBody">
+            <div class="chip">Firebase</div>
+            <div class="listLine"></div>
+            <div class="listLine"></div>
+            <div class="listLine"></div>
+            <div class="listLine"></div>
+          </div>
+        </div>
+        <button class="btnMini" onclick="openMiniPop('Flutter + Firebase', 'Aku bisa bikin aplikasi Flutter dengan Firebase: Auth, Firestore, Realtime Database, Storage, Cloud Functions, Notif, sampai analytics. Tampilan neon premium ✨')">
+          Lihat Detail
+        </button>
+      </div>
+
+      <div class="cardX">
+        <div class="cardTop">
+          <div class="iconBubble">🗄</div>
+          <div>
+            <div class="cardTitle">Database & Backend</div>
+            <div class="cardSub">Supabase + MySQL + API</div>
+          </div>
+        </div>
+        <div class="imgFake dbShot">
+          <div class="dbRow"></div>
+          <div class="dbRow"></div>
+          <div class="dbRow"></div>
+          <div class="dbRow"></div>
+          <div class="dbRow"></div>
+        </div>
+        <button class="btnMini" onclick="openMiniPop('Backend & Database', 'Aku bisa handle database Supabase/MySQL/phpMyAdmin, bikin REST API, validasi, keamanan basic (rate limit, sanitize input), dan dashboard admin.')">
+          Lihat Detail
+        </button>
+      </div>
+    </div>
+
+    <!-- ===================== -->
+    <!-- LOGIN DEMO             -->
+    <!-- ===================== -->
+    <section class="loginWrap">
+      <div class="loginCard">
+        <div class="loginHead">
+          <div class="loginLogo">A</div>
+          <div>
+            <div class="loginTitle">Login Demo</div>
+            <div class="loginSub">Neon secure • contoh form</div>
+          </div>
+        </div>
+
+        <div class="loginForm">
+          <label>Email</label>
+          <input id="loginEmail" type="email" placeholder="admin@abdussalam.store" />
+
+          <label>Password</label>
+          <input id="loginPass" type="password" placeholder="••••••••" />
+
+          <div class="loginRow">
+            <button class="btnLogin" onclick="fakeLogin()">Login</button>
+            <button class="btnGhost" onclick="openRequest()">Order Project</button>
+          </div>
+
+          <div class="loginHint">
+            *Ini hanya demo UI. Klik Login untuk animasi sukses ✨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- ADMIN PANEL DEMO       -->
+    <!-- ===================== -->
+    <section class="adminPanel">
+      <div class="adminTop">
+        <div class="adminTitle">
+          <span class="dotGlow"></span> Admin Panel Dashboard (Demo)
+        </div>
+        <button class="btnGhost small" onclick="openMiniPop('Admin Panel', 'Dashboard admin ini contoh. Aku bisa bikin versi real: data order, user, transaksi, grafik realtime, filter, export excel, dll 🔥')">
+          Info
+        </button>
+      </div>
+
+      <div class="adminGrid">
+        <div class="statCard">
+          <div class="statName">Total Orders</div>
+          <div class="statValue">248K</div>
+          <div class="statMini">+24% minggu ini</div>
+          <div class="sparkLine"></div>
+        </div>
+
+        <div class="statCard">
+          <div class="statName">Total Sales</div>
+          <div class="statValue">$47.6K</div>
+          <div class="statMini">+14% naik</div>
+          <div class="sparkLine"></div>
+        </div>
+
+        <div class="statCard">
+          <div class="statName">Visits</div>
+          <div class="statValue">189K</div>
+          <div class="statMini">-35% turun</div>
+          <div class="sparkLine"></div>
+        </div>
+
+        <div class="statCard">
+          <div class="statName">Bounce Rate</div>
+          <div class="statValue">24.6%</div>
+          <div class="statMini">+18% improve</div>
+          <div class="sparkLine"></div>
+        </div>
+      </div>
+
+      <div class="adminCharts">
+        <div class="chartCard">
+          <div class="chartTitle">Order Status</div>
+          <div class="donut">
+            <div class="donutInner">
+              <div class="donutBig">68%</div>
+              <div class="donutSmall">Total Sales</div>
+            </div>
+          </div>
+          <div class="legend">
+            <span><i class="l1"></i> Sales</span>
+            <span><i class="l2"></i> Product</span>
+            <span><i class="l3"></i> Income</span>
+          </div>
+        </div>
+
+        <div class="chartCard">
+          <div class="chartTitle">Sales & Views</div>
+          <div class="barChart">
+            <div class="bar" style="--h:30%"></div>
+            <div class="bar" style="--h:60%"></div>
+            <div class="bar" style="--h:40%"></div>
+            <div class="bar" style="--h:80%"></div>
+            <div class="bar" style="--h:55%"></div>
+            <div class="bar" style="--h:35%"></div>
+            <div class="bar" style="--h:70%"></div>
+            <div class="bar" style="--h:45%"></div>
+          </div>
+          <div class="chartHint">*Grafik demo animasi</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- TIKTOK PROFILE DEMO    -->
+    <!-- ===================== -->
+    <section class="tiktokWrap">
+      <div class="tiktokCard">
+        <div class="ttTop">
+          <div class="ttAvatar">AS</div>
+          <div class="ttInfo">
+            <div class="ttName">ABDUSSALAM</div>
+            <div class="ttUser">@abdus.dev</div>
+            <div class="ttBio">
+              Flutter Developer • Firebase • Supabase • Admin Panel • Neon UI ✨
+            </div>
+          </div>
+        </div>
+
+        <div class="ttStats">
+          <div class="ttStat">
+            <div class="ttNum">128</div>
+            <div class="ttLbl">Projects</div>
+          </div>
+          <div class="ttStat">
+            <div class="ttNum">9.8K</div>
+            <div class="ttLbl">Followers</div>
+          </div>
+          <div class="ttStat">
+            <div class="ttNum">4.2M</div>
+            <div class="ttLbl">Likes</div>
+          </div>
+        </div>
+
+        <div class="ttBtns">
+          <button class="ttFollow" onclick="openMiniPop('Follow', 'Ini contoh tombol follow. Kamu bisa request sistem follow/friends/like di aplikasi kamu juga 🔥')">Follow</button>
+          <button class="ttOrder" onclick="openRequest()">Order Sekarang</button>
+        </div>
+
+        <div class="ttGrid">
+          <div class="ttVid"></div>
+          <div class="ttVid"></div>
+          <div class="ttVid"></div>
+          <div class="ttVid"></div>
+          <div class="ttVid"></div>
+          <div class="ttVid"></div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ===================== -->
+  <!-- FLOAT BUTTONS (RIGHT)  -->
+  <!-- ===================== -->
+  <div class="abdus-float-stack">
+    <button class="sideBtn blue" onclick="scrollToTop()">🏠 Home</button>
+    <button class="sideBtn orange" onclick="openRequest()">📩 Request</button>
+    <button class="sideBtn green" onclick="openMiniPop('Posted by', 'Website ini dibuat oleh ABDUSSALAM — Neon Portfolio Mode 😈🔥')">✨ Posted</button>
+  </div>
+
+  <!-- ===================== -->
+  <!-- FLOAT REQUEST (CENTER) -->
+  <!-- ===================== -->
+  <div class="abdus-float-request">
+    <button class="abdus-float-btn" onclick="openRequest()">
+      ⚡ REQUEST PROJECT
+    </button>
+  </div>
+
+  <!-- ===================== -->
+  <!-- REQUEST POPUP (SMALL)  -->
+  <!-- ===================== -->
+  <div class="abdus-modal" id="reqModal">
+    <div class="abdus-modal-card smallPop">
+      <div class="abdus-modal-head">
+        <div class="modalTitle">🔥 Request Project</div>
+        <button class="closeX" onclick="closeRequest()">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="miniNote">
+          Pilih project kamu, isi detail, lalu klik <b>ORDER</b> 😈✨
+        </div>
+
+        <div class="fieldGrid">
+          <div class="field">
+            <label>Nama</label>
+            <input id="fNama" placeholder="Nama kamu..." />
+          </div>
+
+          <div class="field">
+            <label>Email</label>
+            <input id="fEmail" placeholder="admin@abdussalam.store" value="admin@abdussalam.store"/>
+          </div>
+
+          <div class="field">
+            <label>WhatsApp</label>
+            <input id="fWa" placeholder="083155620630" value="083155620630"/>
+          </div>
+
+          <div class="field">
+            <label>Pilih Project</label>
+            <select id="fProjek">
+              <option>Flutter App</option>
+              <option>Flutter + Firebase</option>
+              <option>FlutterFlow</option>
+              <option>Website Portfolio</option>
+              <option>Admin Panel</option>
+              <option>Supabase Backend</option>
+              <option>MySQL + phpMyAdmin</option>
+              <option>IT Security</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Jumlah Order</label>
+            <select id="fJumlah">
+              <option>1 Project</option>
+              <option>2 Project</option>
+              <option>3 Project</option>
+              <option>Custom</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Detail Request</label>
+            <textarea id="fDetail" rows="3" placeholder="Contoh: login + dashboard admin + database + deploy..."></textarea>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button class="btnOrder" onclick="sendOrder()">🚀 ORDER SEKARANG</button>
+          <button class="btnCancel" onclick="closeRequest()">Nanti dulu</button>
+        </div>
+
+        <div class="contactBox">
+          <div><b>📞 WA:</b> 083155620630</div>
+          <div><b>📧 Email:</b> admin@abdussalam.store</div>
+          <div class="addrSmall">📍 Jl. Aengsareh, Takong, Sampang, Madura, Indonesia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- MINI POPUP (DETAILS)   -->
+  <!-- ===================== -->
+  <div class="abdus-mini-modal" id="miniModal">
+    <div class="miniCard">
+      <div class="miniHead">
+        <div class="miniTitle" id="miniTitle">Title</div>
+        <button class="closeX" onclick="closeMiniPop()">✕</button>
+      </div>
+      <div class="miniBody" id="miniBody">
+        isi...
+      </div>
+      <div class="miniFoot">
+        <button class="btnMiniOrder" onclick="openRequest()">Order Sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- STYLE (BODY STYLE ONLY) -->
+  <!-- ===================== -->
+  <style>
+    body{
+      margin:0;
+      font-family:Segoe UI,system-ui,Arial;
+      background:radial-gradient(circle at top,#020617,#000);
+      color:#e5e7eb;
+      overflow-x:hidden;
+    }
+    .abdus-bg-stars{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,245,255,.12), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255,0,120,.12), transparent 45%),
+        radial-gradient(circle at 50% 10%, rgba(0,255,140,.08), transparent 50%);
+      pointer-events:none;
+      z-index:-1;
+      filter:blur(0px);
+      animation:bgMove 6s ease-in-out infinite;
+    }
+    @keyframes bgMove{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.02)}
+    }
+
+    .abdus-wrap{
+      width:min(1100px,92vw);
+      margin:40px auto 140px;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    /* TERMINAL */
+    .terminal{
+      background:#020617;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 25px 80px rgba(0,0,0,.6);
+      overflow:hidden;
+    }
+    .terminal-top{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 14px;
+      background:linear-gradient(90deg, rgba(255,0,90,.15), rgba(0,245,255,.12), rgba(0,255,120,.10));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .red{background:#ff4d4d}
+    .yellow{background:#ffd24d}
+    .green{background:#5dff4d}
+    .terminal-title{
+      margin-left:8px;
+      font-weight:800;
+      letter-spacing:.6px;
+      color:#e5e7eb;
+      opacity:.95;
+    }
+    .terminal-tag{
+      margin-left:auto;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      color:#06101f;
+      background:linear-gradient(90deg,#ff2bd6,#00f5ff,#00ff88);
+      box-shadow:0 0 18px rgba(0,245,255,.25);
+      animation:tagBlink 1s infinite;
+    }
+    @keyframes tagBlink{
+      0%,100%{filter:brightness(1)}
+      50%{filter:brightness(1.35)}
+    }
+
+    .terminal-body{padding:16px 16px 18px}
+    .line{margin:6px 0; font-family:ui-monospace,Consolas,monospace; font-size:14px}
+    .prompt{color:#ff2bd6;font-weight:900}
+    .at{color:#e5e7eb}
+    .os{color:#00f5ff;font-weight:900}
+    .colon,.hash{color:#00ff88;font-weight:900}
+    .path{color:#ffd24d;font-weight:900}
+    .cmd{margin-left:8px}
+    .out{
+      margin:8px 0 14px;
+      font-family:ui-monospace,Consolas,monospace;
+      opacity:.95;
+      line-height:1.45;
+    }
+
+    .glowText{
+      text-shadow:0 0 10px rgba(0,245,255,.35), 0 0 20px rgba(255,0,120,.25);
+      animation:textPulse 1.2s infinite;
+    }
+    @keyframes textPulse{
+      0%,100%{filter:brightness(1)}
+      50%{filter:brightness(1.35)}
+    }
+    .glowTextRainbow{
+      font-weight:900;
+      background:linear-gradient(90deg,#ff2bd6,#00f5ff,#00ff88,#ffd24d);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 18px rgba(0,245,255,.25);
+      animation:rainMove 2s linear infinite;
+      background-size:300% 100%;
+    }
+    @keyframes rainMove{
+      0%{background-position:0% 50%}
+      100%{background-position:100% 50%}
+    }
+
+    .addressText{
+      color:#e5e7eb;
+      text-shadow:0 0 18px rgba(255,255,255,.18), 0 0 22px rgba(0,245,255,.18);
+      font-weight:700;
+    }
+
+    .descBlock{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.0));
+      box-shadow:0 0 0 1px rgba(0,245,255,.06) inset;
+    }
+    .descTitle{
+      font-weight:1000;
+      letter-spacing:1px;
+      margin-bottom:8px;
+      background:linear-gradient(90deg,#ff2bd6,#00f5ff,#00ff88);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:rainMove 2s linear infinite;
+      background-size:300% 100%;
+    }
+    .descText{
+      font-size:13.5px;
+      color:#e5e7eb;
+      opacity:.95;
+      line-height:1.55;
+    }
+
+    .skillGrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .skillItem{
+      padding:10p
+</html>
